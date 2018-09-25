@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.manage.dao.ReaderInfoDao" >
+
+    <select id="queryReader" parameterType="java.util.Map" resultType="com.library.manage.bean.ReaderInfoBean">
+        select
+        ui.ID as id,
+        ui.USER_NAME as userName,
+        ui.USER_PASSWORD as userPassword,
+        ui.TYPE as type
+        from userinfo ui
+        where ui.STATUS != 'deleted'
+        <if test="id != null">
+            and ui.ID = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="userName != null and userName !=''">
+            and ui.USER_NAME = #{userName,jdbcType=VARCHAR}
+        </if>
+        <if test="userPassword != null and userPassword !=''">
+            and ui.USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null and type !=''">
+            and ui.TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+            and ui.CREATE_TIME = #{createDate,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            and ui.UPDATE_TIME = #{updateDate,jdbcType=TIMESTAMP}
+        </if>
+        order by ui.UPDATE_TIME desc
+    </select>
+
+    <insert id="createReader" parameterType="com.library.manage.bean.ReaderInfoBean">
+        insert into userinfo (
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                ID,
+            </if>
+            <if test="userName !=null">
+                USER_NAME,
+            </if>
+            <if test="userPassword !=null and userPassword !=''">
+                USER_PASSWORD,
+            </if>
+            <if test="status !=null and status !=''">
+                STATUS,
+            </if>
+            <if test="createTime !=null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime !=null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        ) values(
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userName !=null">
+                #{userName,jdbcType=BIGINT},
+            </if>
+            <if test="userPassword !=null and userPassword !=''">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="status !=null and status !=''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime !=null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="modifyReader" parameterType="java.util.Map">
+        update userinfo
+        <set >
+            <if test="userName != null and userName != ''" >
+                USER_NAME = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null and userPassword != ''" >
+                USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null " >
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteReader" parameterType="java.util.Map">
+        update userinfo
+        <set >
+            STATUS = #{status},
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
