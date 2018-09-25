@@ -11,8 +11,8 @@ import com.library.manage.service.ReaderInfoService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.io.Reader;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ import java.util.Map;
 /*
  * created by liumm308 2018/09/25
  * */
+@Service(value = "ReaderInfoService")
 public class ReaderInfoServiceImpl implements ReaderInfoService {
 
     private static Logger logger = LogManager.getLogger(ReaderInfoServiceImpl.class);
@@ -131,14 +132,14 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         String readerType = baseInfo.getString("readerType");
         String readerPhone = baseInfo.getString("readerPhone");
         String descriptive = baseInfo.getString("descriptive");
-        Timestamp c = new Timestamp(new Date().getTime());
+        Timestamp dateTime = new Timestamp(new Date().getTime());
 
         map.put("id",id);
         map.put("readerName",readerName);
         map.put("readerType",readerType);
         map.put("readerPhone",readerPhone);
         map.put("descriptive",descriptive);
-        map.put("updateTime",descriptive);
+        map.put("updateTime",dateTime);
 
         try{
 

@@ -4,44 +4,58 @@
 
     <select id="queryReader" parameterType="java.util.Map" resultType="com.library.manage.bean.ReaderInfoBean">
         select
-        ui.ID as id,
-        ui.USER_NAME as userName,
-        ui.USER_PASSWORD as userPassword,
-        ui.TYPE as type
-        from userinfo ui
-        where ui.STATUS != 'deleted'
+        ri.ID as id,
+        ri.READER_NAME as readerName,
+        ri.READER_TYPE as readerType,
+        ri.READER_AGE as readerAge,
+        ri.READER_SEX as readerSex
+        from readerinfo ri
+        where ri.STATUS != 'deleted'
         <if test="id != null">
-            and ui.ID = #{id,jdbcType=BIGINT}
+            and ri.ID = #{id,jdbcType=BIGINT}
         </if>
-        <if test="userName != null and userName !=''">
-            and ui.USER_NAME = #{userName,jdbcType=VARCHAR}
+        <if test="readerName != null and readerName !=''">
+            and ri.READER_NAME = #{readerName,jdbcType=VARCHAR}
         </if>
-        <if test="userPassword != null and userPassword !=''">
-            and ui.USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+        <if test="readerType != null and readerType !=''">
+            and ri.READER_TYPE = #{readerType,jdbcType=VARCHAR}
         </if>
-        <if test="type != null and type !=''">
-            and ui.TYPE = #{type,jdbcType=VARCHAR}
+
+        <if test="readerAge != null and readerAge !=''">
+            and ri.READER_AGE = #{readerAge,jdbcType=BIGINT}
+        </if>
+        <if test="readerSex != null and readerSex !=''">
+            and ri.READER_SEX = #{readerSex,jdbcType=VARCHAR}
         </if>
         <if test="createTime != null">
-            and ui.CREATE_TIME = #{createDate,jdbcType=TIMESTAMP}
+            and ri.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
         </if>
         <if test="updateTime != null">
-            and ui.UPDATE_TIME = #{updateDate,jdbcType=TIMESTAMP}
+            and ri.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
         </if>
-        order by ui.UPDATE_TIME desc
+        order by ri.UPDATE_TIME desc
     </select>
 
     <insert id="createReader" parameterType="com.library.manage.bean.ReaderInfoBean">
-        insert into userinfo (
+        insert into readerinfo (
         <trim suffixOverrides=",">
             <if test="id !=null">
                 ID,
             </if>
-            <if test="userName !=null">
-                USER_NAME,
+            <if test="readerName !=null">
+                READER_NAME,
             </if>
-            <if test="userPassword !=null and userPassword !=''">
-                USER_PASSWORD,
+            <if test="readerAge !=null and readerAge !=''">
+                READER_AGE,
+            </if>
+            <if test="readerSex !=null and readerSex !=''">
+                READER_SEX,
+            </if>
+            <if test="readerPhone !=null and readerPhone !=''">
+                READER_PHONE,
+            </if>
+            <if test="descriptive !=null and descriptive !=''">
+                DESCRIPTIVE,
             </if>
             <if test="status !=null and status !=''">
                 STATUS,
@@ -58,11 +72,20 @@
             <if test="id !=null">
                 #{id,jdbcType=BIGINT},
             </if>
-            <if test="userName !=null">
-                #{userName,jdbcType=BIGINT},
+            <if test="readerName !=null">
+                #{readerName,jdbcType=VARCHAR},
             </if>
-            <if test="userPassword !=null and userPassword !=''">
-                #{userPassword,jdbcType=VARCHAR},
+            <if test="readerAge !=null and readerAge !=''">
+                #{readerAge,jdbcType=VARCHAR},
+            </if>
+            <if test="readerSex !=null and readerSex !=''">
+                #{readerSex,jdbcType=VARCHAR},
+            </if>
+            <if test="readerPhone !=null and readerPhone !=''">
+                #{readerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="descriptive !=null and descriptive !=''">
+                #{descriptive,jdbcType=VARCHAR},
             </if>
             <if test="status !=null and status !=''">
                 #{status,jdbcType=VARCHAR},
@@ -78,13 +101,19 @@
     </insert>
 
     <update id="modifyReader" parameterType="java.util.Map">
-        update userinfo
+        update readerinfo
         <set >
-            <if test="userName != null and userName != ''" >
-                USER_NAME = #{userName,jdbcType=VARCHAR},
+            <if test="readerName != null and readerName != ''" >
+                READER_NAME = #{readerName,jdbcType=VARCHAR},
             </if>
-            <if test="userPassword != null and userPassword != ''" >
-                USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+            <if test="readerType != null and readerType != ''" >
+                READER_TYPE = #{readerType,jdbcType=VARCHAR},
+            </if>
+            <if test="readerPhone != null and readerPhone != ''" >
+                READER_PHONE = #{readerType,jdbcType=VARCHAR},
+            </if>
+            <if test="descriptive != null and descriptive != ''" >
+                DESCRIPTIVE = #{descriptive,jdbcType=VARCHAR},
             </if>
             <if test="updateTime != null " >
                 UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
@@ -94,7 +123,7 @@
     </update>
 
     <update id="deleteReader" parameterType="java.util.Map">
-        update userinfo
+        update readerinfo
         <set >
             STATUS = #{status},
         </set>

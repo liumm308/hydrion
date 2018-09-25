@@ -23,10 +23,10 @@
             and ui.TYPE = #{type,jdbcType=VARCHAR}
         </if>
         <if test="createTime != null">
-            and ui.CREATE_TIME = #{createDate,jdbcType=TIMESTAMP}
+            and ui.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
         </if>
         <if test="updateTime != null">
-            and ui.UPDATE_TIME = #{updateDate,jdbcType=TIMESTAMP}
+            and ui.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
         </if>
         order by ui.UPDATE_TIME desc
     </select>
@@ -59,7 +59,7 @@
                 #{id,jdbcType=BIGINT},
             </if>
             <if test="userName !=null">
-                #{userName,jdbcType=BIGINT},
+                #{userName,jdbcType=VARCHAR},
             </if>
             <if test="userPassword !=null and userPassword !=''">
                 #{userPassword,jdbcType=VARCHAR},
