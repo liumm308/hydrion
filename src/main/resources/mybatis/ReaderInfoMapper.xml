@@ -8,7 +8,11 @@
         ri.READER_NAME as readerName,
         ri.READER_TYPE as readerType,
         ri.READER_AGE as readerAge,
-        ri.READER_SEX as readerSex
+        ri.READER_SEX as readerSex,
+        ri.READER_PHONE as readerPhone,
+        ri.DESCRIPTIVE as descriptive,
+        ri.CREATE_TIME as createTime,
+        ri.UPDATE_TIME as updateTime
         from readerinfo ri
         where ri.STATUS != 'deleted'
         <if test="id != null">
