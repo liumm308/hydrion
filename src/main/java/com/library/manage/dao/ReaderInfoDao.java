@@ -12,7 +12,7 @@ import java.util.Map;
 public interface ReaderInfoDao {
     List<ReaderInfoBean> queryReader(Map map);
 
-    int createReader(ReaderInfoBean reader);
+    int createReader(ReaderInfoBean readerInfo);
 
     int modifyReader(Map map);
 

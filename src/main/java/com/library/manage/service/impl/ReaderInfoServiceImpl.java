@@ -168,7 +168,7 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         int id = baseInfo.getInteger("id");
 
         map.put("id",id);
-        map.put("status","delete");
+        map.put("status","deleted");
 
         try{
 
