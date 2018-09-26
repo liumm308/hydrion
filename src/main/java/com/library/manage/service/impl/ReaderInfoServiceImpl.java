@@ -111,6 +111,8 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建读者失败");
             logger.error("创建读者失败: ", e);
+            return resultInfo;
+
         }
 
         resultInfo.setCode(Constants.SUCCESS);
@@ -149,6 +151,8 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建读者失败");
             logger.error("创建读者失败: ", e);
+            return resultInfo;
+
         }
 
         resultInfo.setCode(Constants.SUCCESS);
@@ -179,6 +183,8 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除读者失败");
             logger.error("删除读者失败: ", e);
+            return resultInfo;
+
         }
 
         resultInfo.setCode(Constants.SUCCESS);

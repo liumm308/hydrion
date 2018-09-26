@@ -52,6 +52,9 @@
             <if test="readerAge !=null and readerAge !=''">
                 READER_AGE,
             </if>
+            <if test="readerType !=null and readerType !=''">
+                READER_TYPE,
+            </if>
             <if test="readerSex !=null and readerSex !=''">
                 READER_SEX,
             </if>
@@ -80,7 +83,10 @@
                 #{readerName,jdbcType=VARCHAR},
             </if>
             <if test="readerAge !=null and readerAge !=''">
-                #{readerAge,jdbcType=VARCHAR},
+                #{readerAge,jdbcType=BIGINT},
+            </if>
+            <if test="readerType !=null and readerType !=''">
+                #{readerType,jdbcType=BIGINT},
             </if>
             <if test="readerSex !=null and readerSex !=''">
                 #{readerSex,jdbcType=VARCHAR},
@@ -114,7 +120,7 @@
                 READER_TYPE = #{readerType,jdbcType=VARCHAR},
             </if>
             <if test="readerPhone != null and readerPhone != ''" >
-                READER_PHONE = #{readerType,jdbcType=VARCHAR},
+                READER_PHONE = #{readerPhone,jdbcType=VARCHAR},
             </if>
             <if test="descriptive != null and descriptive != ''" >
                 DESCRIPTIVE = #{descriptive,jdbcType=VARCHAR},

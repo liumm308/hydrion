@@ -95,6 +95,8 @@ public class UserInfoServiceImpl implements UserInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建用户失败");
             logger.error("创建用户失败: ", e);
+            return resultInfo;
+
         }
 
         resultInfo.setCode(Constants.SUCCESS);
@@ -123,6 +125,8 @@ public class UserInfoServiceImpl implements UserInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除用户失败");
             logger.error("删除用户失败", e);
+            return resultInfo;
+
         }
 
         resultInfo.setCode(Constants.SUCCESS);
@@ -155,6 +159,8 @@ public class UserInfoServiceImpl implements UserInfoService {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("修改用户失败");
             logger.error("修改用户失败", e);
+            return resultInfo;
+
         }
         resultInfo.setCode(Constants.SUCCESS);
         resultInfo.setInfo("修改用户成功");

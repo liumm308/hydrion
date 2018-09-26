@@ -2,8 +2,10 @@ package com.library.manage.handler.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.library.manage.bean.BookInfoBean;
 import com.library.manage.bean.ReaderInfoBean;
 import com.library.manage.bean.UserInfoBean;
+import com.library.manage.dao.BookInfoDao;
 import com.library.manage.dao.ReaderInfoDao;
 import com.library.manage.dao.UserInfoDao;
 import com.library.manage.handler.IParamHandler;
@@ -22,6 +24,9 @@ public class IParamHandlerImpl implements IParamHandler {
     @Autowired
     ReaderInfoDao readerInfoDao;
 
+    @Autowired
+    BookInfoDao bookInfoDao;
+
     /**
      * 查询用户
      */
@@ -36,6 +41,7 @@ public class IParamHandlerImpl implements IParamHandler {
             PageInfo<UserInfoBean> page = new PageInfo<UserInfoBean>(list);
             page.setList(list);
             return page;
+
         } else {
 
             PageHelper.startPage(pageNum, pageSize);
@@ -59,6 +65,7 @@ public class IParamHandlerImpl implements IParamHandler {
             PageInfo<ReaderInfoBean> page = new PageInfo<ReaderInfoBean>(list);
             page.setList(list);
             return page;
+
         } else {
 
             PageHelper.startPage(pageNum, pageSize);
@@ -66,6 +73,30 @@ public class IParamHandlerImpl implements IParamHandler {
             PageInfo<ReaderInfoBean> page = new PageInfo<ReaderInfoBean>(list);
             return page;
         }
+    }
+
+    /**
+     * 查询书本
+     */
+    @Override
+    public PageInfo queryBook(Map<String, Object> map) {
+
+        Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
+        Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
+
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)){
+
+            List<BookInfoBean> list =  bookInfoDao.queryBook(map);
+            PageInfo<BookInfoBean> page = new PageInfo<BookInfoBean>(list);
+            page.setList(list);
+            return page;
+
+        }
+
+        PageHelper.startPage(pageNum,pageSize);
+        List<BookInfoBean> list =  bookInfoDao.queryBook(map);
+        PageInfo<BookInfoBean> page = new PageInfo<BookInfoBean>(list);
+        return page;
     }
 
 
