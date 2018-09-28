@@ -73,12 +73,12 @@ public class BookInfoServiceImpl implements BookInfoService {
 
         ResultInfo resultInfo = new ResultInfo();
 
-        JSONObject jsonObject = new JSONObject();
-        JSONObject baseInfo = jsonObject.getJSONObject(jsonStr);
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        String isbn = baseInfo.getString("isbn");
         int typeId = baseInfo.getIntValue("typeId");
         int publishNum = baseInfo.getIntValue("publishNum");
         Double unitPrice = baseInfo.getDouble("unitPrice");
-        String isbn = baseInfo.getString("isbn");
         String bookName = baseInfo.getString("bookName");
         String author = baseInfo.getString("author");
         String publish = baseInfo.getString("publish");
@@ -96,6 +96,7 @@ public class BookInfoServiceImpl implements BookInfoService {
         bookInfo.setPublishDate(publishDate);
         bookInfo.setUpTime(dateTime);
         bookInfo.setDownTime(dateTime);
+        bookInfo.setStatus("available");
 
         try{
 

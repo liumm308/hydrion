@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.manage.dao.BookInfoDao" >
+
+    <select id="querybook" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
+        select
+        bi.ISBN as isbn,
+        bi.TYPE_ID as typeId,
+        bi.BOOK_NAME as bookName,
+        bi.AUTHOR as author,
+        bi.PUBLISH as publish,
+        bi.PUBLISH_DATE as publishDate,
+        bi.PUBLISH_NUM as publishNum,
+        bi.UNIT_PRICE as unitPrice
+        bi.UP_TIME as upTime,
+        bi.DOWN_TIME as downTime
+        from bookinfo bi
+        where bi.STATUS != 'deleted'
+        <if test="isbn != null">
+            and bi.ISBN = #{isbn,jdbcType=VARCHAR}
+        </if>
+        <if test="bookName != null and bookName !=''">
+            and bi.BOOK_NAME = #{bookName,jdbcType=VARCHAR}
+        </if>
+        <if test="author != null and author !=''">
+            and bi.AUTHOR = #{author,jdbcType=VARCHAR}
+        </if>
+
+        <if test="publish != null and publish !=''">
+            and bi.READER_AGE = #{publish,jdbcType=BIGINT}
+        </if>
+        <if test="upTime != null">
+            and bi.UP_TIME = #{upTime,jdbcType=TIMESTAMP}
+        </if>
+        order by bi.UP_TIME desc
+    </select>
+
+    <insert id="insertBook" parameterType="com.library.manage.bean.BookInfoBean">
+        insert into bookinfo (
+        <trim suffixOverrides=",">
+            <if test="isbn !=null">
+                ISBN,
+            </if>
+            <if test="typeId !=null">
+                TYPE_ID,
+            </if>
+            <if test="bookName !=null and bookName !=''">
+                BOOK_NAME,
+            </if>
+            <if test="author !=null and author !=''">
+                AUTHOR,
+            </if>
+            <if test="publish !=null and publish !=''">
+                PUBLISH,
+            </if>
+            <if test="publishDate !=null and publishDate !=''">
+                PUBLISH_DATE,
+            </if>
+            <if test="publishNum !=null and publishNum !=''">
+                PUBLISH_NUM,
+            </if>
+            <if test="unitPrice !=null and unitPrice !=''">
+                UNIT_PRICE,
+            </if>
+            <if test="status !=null and status !=''">
+                STATUS,
+            </if>
+            <if test="upTime !=null">
+                UP_TIME,
+            </if>
+            <if test="downTime !=null">
+                DOWN_TIME,
+            </if>
+        </trim>
+        ) values(
+        <trim suffixOverrides=",">
+            <if test="isbn !=null">
+                #{isbn,jdbcType=BIGINT},
+            </if>
+            <if test="typeId !=null">
+                #{typeId,jdbcType=VARCHAR},
+            </if>
+            <if test="bookName !=null and bookName !=''">
+                #{bookName,jdbcType=BIGINT},
+            </if>
+            <if test="author !=null and author !=''">
+                #{author,jdbcType=BIGINT},
+            </if>
+            <if test="publish !=null and publish !=''">
+                #{publish,jdbcType=VARCHAR},
+            </if>
+            <if test="publishDate !=null and publishDate !=''">
+                #{readerPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="publishNum !=null and publishNum !=''">
+                #{publishNum,jdbcType=VARCHAR},
+            </if>
+            <if test="unitPrice !=null and unitPrice !=''">
+                #{publishNum,jdbcType=VARCHAR},
+            </if>
+            <if test="status !=null and status !=''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="upTime !=null">
+                #{upTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="downTime !=null">
+                #{downTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="deleteBook" parameterType="java.util.Map">
+        update bookinfo
+        <set >
+            STATUS = #{status},
+        </set>
+        where ISBN = #{isbn,jdbcType=BIGINT}
+    </update>
+</mapper>
