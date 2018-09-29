@@ -4,9 +4,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.library.manage.bean.BookInfoBean;
 import com.library.manage.bean.ReaderInfoBean;
+import com.library.manage.bean.ReaderTypeBean;
 import com.library.manage.bean.UserInfoBean;
 import com.library.manage.dao.BookInfoDao;
 import com.library.manage.dao.ReaderInfoDao;
+import com.library.manage.dao.ReaderTypeDao;
 import com.library.manage.dao.UserInfoDao;
 import com.library.manage.handler.IParamHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class IParamHandlerImpl implements IParamHandler {
 
     @Autowired
     BookInfoDao bookInfoDao;
+
+    @Autowired
+    ReaderTypeDao readerTypeDao;
 
     /**
      * 查询用户
@@ -99,5 +104,23 @@ public class IParamHandlerImpl implements IParamHandler {
         return page;
     }
 
+    @Override
+    public PageInfo queryReaderType(Map<String, Object> map) {
 
+        Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
+        Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
+
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
+
+            List<ReaderTypeBean> list = readerTypeDao.queryReaderType(map);
+            PageInfo<ReaderTypeBean> page = new PageInfo<ReaderTypeBean>(list);
+            page.setList(list);
+            return page;
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<ReaderTypeBean> list = readerTypeDao.queryReaderType(map);
+        PageInfo<ReaderTypeBean> page = new PageInfo<ReaderTypeBean>(list);
+        return page;
+    }
 }

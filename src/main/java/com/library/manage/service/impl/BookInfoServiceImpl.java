@@ -9,6 +9,7 @@ import com.library.manage.dao.BookInfoDao;
 import com.library.manage.handler.IParamHandler;
 import com.library.manage.service.BookInfoService;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ import java.util.Map;
 @Service(value = "BookInfoService")
 public class BookInfoServiceImpl implements BookInfoService {
 
-    private static org.apache.logging.log4j.Logger logger = LogManager.getLogger(ReaderInfoServiceImpl.class);
+    private static Logger logger = LogManager.getLogger(ReaderInfoServiceImpl.class);
 
     @Autowired
     private IParamHandler paramHandler;
@@ -35,7 +36,7 @@ public class BookInfoServiceImpl implements BookInfoService {
         ResultInfo resultInfo = new ResultInfo();
         Map<String, Object> map = new HashMap<>();
 
-        JSONObject jsonObject = new JSONObject();
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         int pageSize = baseInfo.getIntValue("pageSize");
         int pageNum = baseInfo.getIntValue("pageNum");

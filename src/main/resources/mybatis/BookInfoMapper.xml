@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.library.manage.dao.BookInfoDao" >
 
-    <select id="querybook" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
+    <select id="queryBook" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
         select
         bi.ISBN as isbn,
         bi.TYPE_ID as typeId,

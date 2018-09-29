@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.manage.dao.ReaderTypeDao" >
+
+    <select id="queryReaderType" parameterType="java.util.Map" resultType="com.library.manage.bean.ReaderTypeBean">
+        select
+        rt.ID as id,
+        rt.TYPE_NAME as typeName,
+        rt.MAX_BORROW_NUM as maxBorrowNum,
+        rt.MAX_BORROW_LIMIT as maxBorrowLimit,
+        rt.CREATE_TIME as createTime,
+        rt.UPDATE_TIME as updateTime
+        from readertype rt
+        where bi.STATUS != 'deleted'
+        <if test="id != null">
+            and rt.id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="typeName != null and typeName !=''">
+            and rt.TYPE_NAME = #{typeName,jdbcType=VARCHAR}
+        </if>
+        <if test="maxBorrowNum != null and maxBorrowNum !=''">
+            and rt.MAX_BORROW_NUM = #{maxBorrowNum,jdbcType=BIGINT}
+        </if>
+
+        <if test="maxBorrowLimit != null and maxBorrowLimit !=''">
+            and rt.MAX_BORROW_LIMIT = #{maxBorrowLimit,jdbcType=BIGINT}
+        </if>
+        <if test="updateTime != null">
+            and bi.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        order by bi.UPDATE_TIME desc
+    </select>
+
+    <insert id="createReaderType" parameterType="com.library.manage.bean.ReaderTypeBean">
+        insert into readertype (
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                ID,
+            </if>
+            <if test="typeName !=null">
+                TYPE_NAME,
+            </if>
+            <if test="maxBorrowNum !=null and maxBorrowNum !=''">
+                MAX_BORROW_NUM,
+            </if>
+            <if test="maxBorrowLimit !=null and maxBorrowLimit !=''">
+                MAX_BORROW_LIMIT,
+            </if>
+            <if test="status !=null and status !=''">
+                STATUS,
+            </if>
+            <if test="createTime !=null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime !=null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        ) values(
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="typeName !=null">
+                #{typeName,jdbcType=VARCHAR},
+            </if>
+            <if test="maxBorrowNum !=null and maxBorrowNum !=''">
+                #{maxBorrowNum,jdbcType=BIGINT},
+            </if>
+            <if test="maxBorrowLimit !=null and maxBorrowLimit !=''">
+                #{maxBorrowLimit,jdbcType=BIGINT},
+            </if>
+            <if test="status !=null and status !=''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="status !=null and status !=''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime !=null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="updateReaderType" parameterType="java.util.Map">
+        update readertype
+        <set >
+            <if test="maxBorrowNum != null and maxBorrowNum != ''" >
+                MAX_BORROW_NUM = #{maxBorrowNum,jdbcType=BIGINT},
+            </if>
+            <if test="maxBorrowLimit != null and maxBorrowLimit != ''" >
+                MAX_BORROW_LIMIT = #{maxBorrowLimit,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null " >
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteReaderType" parameterType="java.util.Map">
+        update readertype
+        <set >
+            STATUS = #{status},
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
