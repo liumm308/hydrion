@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.library.manage.dao.BookTypeDao" >
+
+    <select id="queryBookType" parameterType="java.util.Map" resultType="com.library.manage.bean.BookTypeBean">
+        select
+        bt.ID as id,
+        bt.BOOK_TYPE_NAME as bookTypeName,
+        bt.CREATE_TIME as createTime,
+        bt.UPDATE_TIME as updateTime
+        from booktype bt
+        where bt.STATUS != 'deleted'
+        <if test="id != null">
+            and bt.id = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="bookTypeName != null and bookTypeName !=''">
+            and bt.BOOK_TYPE_NAME = #{bookTypeName,jdbcType=VARCHAR}
+        </if>
+        <if test="updateTime != null">
+            and bt.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        order by bt.UPDATE_TIME desc
+    </select>
+
+    <insert id="createBookType" parameterType="com.library.manage.bean.BookTypeBean">
+        insert into booktype (
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                ID,
+            </if>
+            <if test="bookTypeName !=null">
+                BOOK_TYPE_NAME,
+            </if>
+            <if test="status !=null and status !=''">
+                STATUS,
+            </if>
+            <if test="createTime !=null">
+                CREATE_TIME,
+            </if>
+            <if test="updateTime !=null">
+                UPDATE_TIME,
+            </if>
+        </trim>
+        ) values(
+        <trim suffixOverrides=",">
+            <if test="id !=null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="bookTypeName !=null">
+                #{bookTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="status !=null and status !=''">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime !=null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime !=null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+        )
+    </insert>
+
+    <update id="updateBookType" parameterType="java.util.Map">
+        update booktype
+        <set >
+            <if test="bookTypeName != null and bookTypeName !=''">
+                BOOK_TYPE_NAME = #{bookTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null " >
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="deleteBookType" parameterType="java.util.Map">
+        update booktype
+        <set >
+            STATUS = #{status},
+        </set>
+        where ID = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

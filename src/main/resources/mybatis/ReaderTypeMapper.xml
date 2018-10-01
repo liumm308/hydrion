@@ -11,7 +11,7 @@
         rt.CREATE_TIME as createTime,
         rt.UPDATE_TIME as updateTime
         from readertype rt
-        where bi.STATUS != 'deleted'
+        where rt.STATUS != 'deleted'
         <if test="id != null">
             and rt.id = #{id,jdbcType=BIGINT}
         </if>
@@ -26,9 +26,9 @@
             and rt.MAX_BORROW_LIMIT = #{maxBorrowLimit,jdbcType=BIGINT}
         </if>
         <if test="updateTime != null">
-            and bi.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+            and rt.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
         </if>
-        order by bi.UPDATE_TIME desc
+        order by rt.UPDATE_TIME desc
     </select>
 
     <insert id="createReaderType" parameterType="com.library.manage.bean.ReaderTypeBean">
@@ -69,9 +69,6 @@
             </if>
             <if test="maxBorrowLimit !=null and maxBorrowLimit !=''">
                 #{maxBorrowLimit,jdbcType=BIGINT},
-            </if>
-            <if test="status !=null and status !=''">
-                #{status,jdbcType=VARCHAR},
             </if>
             <if test="status !=null and status !=''">
                 #{status,jdbcType=VARCHAR},

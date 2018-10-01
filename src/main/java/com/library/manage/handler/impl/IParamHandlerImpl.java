@@ -2,14 +2,8 @@ package com.library.manage.handler.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.library.manage.bean.BookInfoBean;
-import com.library.manage.bean.ReaderInfoBean;
-import com.library.manage.bean.ReaderTypeBean;
-import com.library.manage.bean.UserInfoBean;
-import com.library.manage.dao.BookInfoDao;
-import com.library.manage.dao.ReaderInfoDao;
-import com.library.manage.dao.ReaderTypeDao;
-import com.library.manage.dao.UserInfoDao;
+import com.library.manage.bean.*;
+import com.library.manage.dao.*;
 import com.library.manage.handler.IParamHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +25,9 @@ public class IParamHandlerImpl implements IParamHandler {
 
     @Autowired
     ReaderTypeDao readerTypeDao;
+
+    @Autowired
+    BookTypeDao bookTypeDao;
 
     /**
      * 查询用户
@@ -122,5 +119,28 @@ public class IParamHandlerImpl implements IParamHandler {
         List<ReaderTypeBean> list = readerTypeDao.queryReaderType(map);
         PageInfo<ReaderTypeBean> page = new PageInfo<ReaderTypeBean>(list);
         return page;
+    }
+
+    @Override
+    public PageInfo queryBookType(Map<String, Object> map) {
+
+        Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
+        Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
+
+        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+
+            List<BookTypeBean> list = bookTypeDao.queryBookType(map);
+            PageInfo<BookTypeBean> page = new PageInfo<>(list);
+            page.setList(list);
+            return page;
+
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<BookTypeBean> list = bookTypeDao.queryBookType(map);
+        PageInfo<BookTypeBean> page = new PageInfo<>(list);
+        page.setList(list);
+        return page;
+
     }
 }
