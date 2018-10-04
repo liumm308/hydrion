@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Service(value = "BookTypeService")
+@Service(value = "ReaderTypeService")
 public class ReaderTypeServiceImpl implements ReaderTypeService {
 
     private static Logger logger = LogManager.getLogger(ReaderTypeServiceImpl.class);

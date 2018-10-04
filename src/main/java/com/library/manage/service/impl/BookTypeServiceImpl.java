@@ -11,6 +11,7 @@ import com.library.manage.service.BookTypeService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+@Service(value = "BookTypeService")
 public class BookTypeServiceImpl implements BookTypeService {
 
     public static Logger logger = LogManager.getLogger(BookTypeServiceImpl.class);
