@@ -76,6 +76,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         int id = baseInfo.getIntValue("id");
         String userName = baseInfo.getString("userName");
         String userPassword = baseInfo.getString("userPassword");
+        String userCompany = baseInfo.getString("userCompany");
         String type = baseInfo.getString("type");
         Timestamp dateTime = new Timestamp(new Date().getTime());
 
@@ -84,6 +85,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setId(id);
         userInfo.setUserName(userName);
         userInfo.setUserPassword(userPassword);
+        userInfo.setUserCompany(userCompany);
         userInfo.setType(type);
         userInfo.setCreateTime(dateTime);
         userInfo.setUpdateTime(dateTime);

@@ -7,6 +7,7 @@
         ui.ID as id,
         ui.USER_NAME as userName,
         ui.USER_PASSWORD as userPassword,
+        ui.USER_COMPANY as userCompany,
         ui.TYPE as type,
         ui.CREATE_TIME as createTime,
         ui.UPDATE_TIME as updateTime
@@ -42,8 +43,14 @@
             <if test="userName !=null">
                 USER_NAME,
             </if>
+            <if test="type !=null and type !=''">
+                TYPE,
+            </if>
             <if test="userPassword !=null and userPassword !=''">
                 USER_PASSWORD,
+            </if>
+            <if test="userCompany !=null and userCompany !=''">
+                USER_COMPANY,
             </if>
             <if test="status !=null and status !=''">
                 STATUS,
@@ -63,8 +70,14 @@
             <if test="userName !=null">
                 #{userName,jdbcType=VARCHAR},
             </if>
+            <if test="type !=null">
+                #{type,jdbcType=VARCHAR},
+            </if>
             <if test="userPassword !=null and userPassword !=''">
                 #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userCompany !=null and userCompany !=''">
+                #{userCompany,jdbcType=VARCHAR},
             </if>
             <if test="status !=null and status !=''">
                 #{status,jdbcType=VARCHAR},

@@ -13,6 +13,7 @@ public class UserInfoBean {
     private String userPassword;
     private String type;
     private String status;
+    private String userCompany;
     private Timestamp createTime;
     private Timestamp updateTime;
 
@@ -54,6 +55,14 @@ public class UserInfoBean {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUserCompany() {
+        return userCompany;
+    }
+
+    public void setUserCompany(String userCompany) {
+        this.userCompany = userCompany;
     }
 
     public Timestamp getCreateTime() {
