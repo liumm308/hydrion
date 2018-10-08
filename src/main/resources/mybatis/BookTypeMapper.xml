@@ -43,7 +43,7 @@
         </trim>
         ) values(
         <trim suffixOverrides=",">
-            <if test="id !=null">
+            <if test="id != null and id!='' ">
                 #{id,jdbcType=BIGINT},
             </if>
             <if test="bookTypeName !=null">

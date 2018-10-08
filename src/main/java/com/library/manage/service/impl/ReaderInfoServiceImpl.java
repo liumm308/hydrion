@@ -43,7 +43,7 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         int pageSize = baseInfo.getIntValue("pageSize");
         int pageNum = baseInfo.getIntValue("pageNum");
-        int id = baseInfo.getInteger("id");
+        int id = baseInfo.getIntValue("id");
         int readerAge = baseInfo.getIntValue("readerAge");
         String readerName = baseInfo.getString("readerName");
         String readerType = baseInfo.getString("readerType");

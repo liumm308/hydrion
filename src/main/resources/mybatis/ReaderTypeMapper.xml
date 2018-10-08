@@ -12,7 +12,7 @@
         rt.UPDATE_TIME as updateTime
         from readertype rt
         where rt.STATUS != 'deleted'
-        <if test="id != null">
+        <if test="id != null and id!='' ">
             and rt.id = #{id,jdbcType=BIGINT}
         </if>
         <if test="typeName != null and typeName !=''">

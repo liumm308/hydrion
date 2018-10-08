@@ -42,7 +42,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         int pageSize = baseInfo.getIntValue("pageSize");
         int pageNum = baseInfo.getIntValue("pageNum");
-        int id = baseInfo.getInteger("id");
+        int id = baseInfo.getIntValue("id");
         String userName = baseInfo.getString("userName");
         String userPassword = baseInfo.getString("userPassword");
 

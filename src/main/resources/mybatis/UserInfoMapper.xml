@@ -13,7 +13,7 @@
         ui.UPDATE_TIME as updateTime
         from userinfo ui
         where ui.STATUS != 'deleted'
-        <if test="id != null">
+        <if test="id != null and id!='' ">
             and ui.ID = #{id,jdbcType=BIGINT}
         </if>
         <if test="userName != null and userName !=''">

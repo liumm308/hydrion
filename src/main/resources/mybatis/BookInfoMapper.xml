@@ -38,10 +38,10 @@
     <insert id="insertBook" parameterType="com.library.manage.bean.BookInfoBean">
         insert into bookinfo (
         <trim suffixOverrides=",">
-            <if test="isbn !=null">
+            <if test="isbn !=null and isbn !=''">
                 ISBN,
             </if>
-            <if test="typeId !=null">
+            <if test="typeId !=null and typeId !=''">
                 TYPE_ID,
             </if>
             <if test="bookName !=null and bookName !=''">

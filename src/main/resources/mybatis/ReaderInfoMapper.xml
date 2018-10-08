@@ -15,7 +15,7 @@
         ri.UPDATE_TIME as updateTime
         from readerinfo ri
         where ri.STATUS != 'deleted'
-        <if test="id != null">
+        <if test="id != null and id!='' ">
             and ri.ID = #{id,jdbcType=BIGINT}
         </if>
         <if test="readerName != null and readerName !=''">
