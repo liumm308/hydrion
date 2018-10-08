@@ -7,7 +7,9 @@
         ui.ID as id,
         ui.USER_NAME as userName,
         ui.USER_PASSWORD as userPassword,
-        ui.TYPE as type
+        ui.TYPE as type,
+        ui.CREATE_TIME as createTime,
+        ui.UPDATE_TIME as updateTime
         from userinfo ui
         where ui.STATUS != 'deleted'
         <if test="id != null">
