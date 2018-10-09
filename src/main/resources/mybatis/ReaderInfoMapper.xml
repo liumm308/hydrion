@@ -6,7 +6,7 @@
         select
         ri.ID as id,
         ri.READER_NAME as readerName,
-        ri.READER_TYPE as readerType,
+        rt.TYPE_NAME as readerType,
         ri.READER_AGE as readerAge,
         ri.READER_SEX as readerSex,
         ri.READER_PHONE as readerPhone,
@@ -14,6 +14,7 @@
         ri.CREATE_TIME as createTime,
         ri.UPDATE_TIME as updateTime
         from readerinfo ri
+        join readertype rt on ri.READER_TYPE = rt.ID
         where ri.STATUS != 'deleted'
         <if test="id != null and id!='' ">
             and ri.ID = #{id,jdbcType=BIGINT}
