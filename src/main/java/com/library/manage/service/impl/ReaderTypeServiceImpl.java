@@ -38,12 +38,16 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         Map<String, Object> map = new HashMap<>();
 
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
-        JSONObject baseInfo = jsonObject.getJSONObject(jsonStr);
+        JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        int pageSize = baseInfo.getIntValue("pageSize");
+        int pageNum = baseInfo.getIntValue("pageNum");
         Integer id = baseInfo.getIntValue("id");
         String typeName = baseInfo.getString("typeName");
 
-        map.put("id",id);
-        map.put("typeName",typeName);
+        map.put("pageSize", pageSize);
+        map.put("pageNum", pageNum);
+        map.put("id", id);
+        map.put("typeName", typeName);
 
         PageInfo page = paramHandler.queryReaderType(map);
         List<ReaderTypeBean> list = page.getList();
@@ -56,7 +60,7 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
 
         resultInfo.setCode(Constants.SUCCESS);
         resultInfo.setInfo("查询读者类型成功");
-        resultInfo.setRetObj(list);
+        resultInfo.setRetObj(jObject);
 
         return resultInfo;
     }
@@ -80,7 +84,7 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         readerType.setMaxBorrowNum(maxBorrowNum);
         readerType.setMaxBorrowLimit(maxBorrowLimit);
         readerType.setCreateTime(dateTime);
-        readerType.setUpdatetrTime(dateTime);
+        readerType.setUpdateTime(dateTime);
         readerType.setStatus("available");
 
         try{

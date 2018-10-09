@@ -14,7 +14,7 @@ public class ReaderTypeBean {
     private Integer maxBorrowLimit;
     private String status;
     private Timestamp createTime;
-    private Timestamp updatetrTime;
+    private Timestamp updateTime;
 
 
     public Integer getId() {
@@ -65,11 +65,11 @@ public class ReaderTypeBean {
         this.createTime = createTime;
     }
 
-    public Timestamp getUpdatetrTime() {
-        return updatetrTime;
+    public Timestamp getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetrTime(Timestamp updatetrTime) {
-        this.updatetrTime = updatetrTime;
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 }

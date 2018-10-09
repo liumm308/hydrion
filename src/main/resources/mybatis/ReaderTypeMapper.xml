@@ -37,7 +37,7 @@
             <if test="id !=null">
                 ID,
             </if>
-            <if test="typeName !=null">
+            <if test="typeName !=null and typeName !=''">
                 TYPE_NAME,
             </if>
             <if test="maxBorrowNum !=null and maxBorrowNum !=''">
@@ -86,6 +86,9 @@
     <update id="updateReaderType" parameterType="java.util.Map">
         update readertype
         <set >
+            <if test="typeName != null and typeName != ''" >
+                TYPE_NAME = #{typeName,jdbcType=VARCHAR},
+            </if>
             <if test="maxBorrowNum != null and maxBorrowNum != ''" >
                 MAX_BORROW_NUM = #{maxBorrowNum,jdbcType=BIGINT},
             </if>
