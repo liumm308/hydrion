@@ -16,7 +16,7 @@
         from readerinfo ri
         join readertype rt on ri.READER_TYPE = rt.ID
         where ri.STATUS != 'deleted'
-        <if test="id != null and id!='' ">
+        <if test="id != null and id!=''">
             and ri.ID = #{id,jdbcType=BIGINT}
         </if>
         <if test="readerName != null and readerName !=''">

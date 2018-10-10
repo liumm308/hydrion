@@ -6,6 +6,8 @@ public class BookTypeBean {
 
     private Integer id;
     private String bookTypeName;
+    private String bookTypeDiscipline;
+    private String bookTypeLocation;
     private String status;
     private Timestamp createTime;
     private Timestamp updateTime;
@@ -25,6 +27,23 @@ public class BookTypeBean {
     public void setBookTypeName(String bookTypeName) {
         this.bookTypeName = bookTypeName;
     }
+
+    public String getBookTypeDiscipline() {
+        return bookTypeDiscipline;
+    }
+
+    public void setBookTypeDiscipline(String bookTypeDiscipline) {
+        this.bookTypeDiscipline = bookTypeDiscipline;
+    }
+
+    public String getBookTypeLocation() {
+        return bookTypeLocation;
+    }
+
+    public void setBookTypeLocation(String bookTypeLocation) {
+        this.bookTypeLocation = bookTypeLocation;
+    }
+
 
     public String getStatus() {
         return status;

@@ -40,10 +40,14 @@ public class BookTypeServiceImpl implements BookTypeService {
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
+        Integer pageSize = baseInfo.getIntValue("pageSize");
+        Integer pageNum = baseInfo.getIntValue("pageNum");
         String bookTypeName = baseInfo.getString("bookTypeName");
 
         map.put("id",id);
         map.put("bookTypeName",bookTypeName);
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
 
         PageInfo page = paramHandler.queryBookType(map);
         List<BookTypeBean> list = page.getList();
@@ -68,11 +72,15 @@ public class BookTypeServiceImpl implements BookTypeService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
         String bookTypeName = baseInfo.getString("bookTypeName");
+        String bookTypeDiscipline = baseInfo.getString("bookTypeDiscipline");
+        String bookTypeLocation = baseInfo.getString("bookTypeLocation");
         Timestamp dateTime = new Timestamp( new Date().getTime());
 
         BookTypeBean bookType = new BookTypeBean();
         bookType.setId(id);
         bookType.setBookTypeName(bookTypeName);
+        bookType.setBookTypeDiscipline(bookTypeDiscipline);
+        bookType.setBookTypeLocation(bookTypeLocation);
         bookType.setCreateTime(dateTime);
         bookType.setUpdateTime(dateTime);
         bookType.setStatus("available");
@@ -104,9 +112,11 @@ public class BookTypeServiceImpl implements BookTypeService {
 
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        Integer id = baseInfo.getIntValue("id");
         String bookTypeName = baseInfo.getString("bookTypeName");
         Timestamp dateTime = new Timestamp(new Date().getTime());
 
+        map.put("id",id);
         map.put("bookTypeName",bookTypeName);
         map.put("updateTime",dateTime);
 

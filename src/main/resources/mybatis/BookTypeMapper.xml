@@ -6,13 +6,12 @@
         select
         bt.ID as id,
         bt.BOOK_TYPE_NAME as bookTypeName,
+        bt.BOOK_TYPE_DISCIPLINE as bookTypeDiscipline,
+        bt.BOOK_TYPE_LOCATION as bookTypeLocation,
         bt.CREATE_TIME as createTime,
         bt.UPDATE_TIME as updateTime
         from booktype bt
         where bt.STATUS != 'deleted'
-        <if test="id != null">
-            and bt.id = #{id,jdbcType=BIGINT}
-        </if>
         <if test="bookTypeName != null and bookTypeName !=''">
             and bt.BOOK_TYPE_NAME = #{bookTypeName,jdbcType=VARCHAR}
         </if>
@@ -28,8 +27,14 @@
             <if test="id !=null">
                 ID,
             </if>
-            <if test="bookTypeName !=null">
+            <if test="bookTypeName !=null and bookTypeName !=''">
                 BOOK_TYPE_NAME,
+            </if>
+            <if test="bookTypeDiscipline !=null and bookTypeDiscipline !=''">
+                BOOK_TYPE_DISCIPLINE,
+            </if>
+            <if test="bookTypeLocation !=null and bookTypeLocation !=''">
+                BOOK_TYPE_LOCATION,
             </if>
             <if test="status !=null and status !=''">
                 STATUS,
@@ -41,13 +46,19 @@
                 UPDATE_TIME,
             </if>
         </trim>
-        ) values(
+        )values(
         <trim suffixOverrides=",">
-            <if test="id != null and id!='' ">
+            <if test="id != null">
                 #{id,jdbcType=BIGINT},
             </if>
-            <if test="bookTypeName !=null">
+            <if test="bookTypeName !=null and bookTypeName !=''">
                 #{bookTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookTypeDiscipline !=null and bookTypeDiscipline !=''">
+                #{bookTypeDiscipline,jdbcType=VARCHAR},
+            </if>
+            <if test="bookTypeLocation !=null and bookTypeLocation !=''">
+                #{bookTypeLocation,jdbcType=VARCHAR},
             </if>
             <if test="status !=null and status !=''">
                 #{status,jdbcType=VARCHAR},
