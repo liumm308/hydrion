@@ -49,6 +49,33 @@ public class BookTypeRest {
     }
 
     /**
+     * BookTypeByName查询接口
+     *
+     * @param jsonStr [id,bookTypeName,...]
+     */
+    @RequestMapping(value = "/queryBookTypeByName", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultInfo queryBookTypeByName(@RequestBody String jsonStr) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        try {
+
+            logger.info("bookType 查询 request: " + JsonPluginsUtil.beanToJson(jsonStr));
+            resultInfo = bookTypeService.queryBookTypeByName(jsonStr);
+
+        } catch (Exception e) {
+
+            logger.error("bookType 查询失败: ", e);
+            resultInfo.setCode(-1);
+        }
+
+        logger.info("bookType 查询 response: " + JsonPluginsUtil.beanToJson(resultInfo));
+
+        return resultInfo;
+
+    }
+
+
+    /**
      * BookType创建接口
      *
      * @param jsonStr [id,bookTypeName,...]

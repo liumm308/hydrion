@@ -9,6 +9,8 @@ public interface BookTypeDao {
 
     List<BookTypeBean> queryBookType(Map map);
 
+    List<BookTypeBean> queryBookTypeByName(Map map);
+
     int createBookType(BookTypeBean bookType);
 
     int updateBookType(Map map);

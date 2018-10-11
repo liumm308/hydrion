@@ -76,6 +76,7 @@ public class BookInfoServiceImpl implements BookInfoService {
 
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        int id = baseInfo.getIntValue("id");
         String isbn = baseInfo.getString("isbn");
         int typeId = baseInfo.getIntValue("typeId");
         int publishNum = baseInfo.getIntValue("publishNum");
@@ -84,9 +85,11 @@ public class BookInfoServiceImpl implements BookInfoService {
         String author = baseInfo.getString("author");
         String publish = baseInfo.getString("publish");
         Timestamp publishDate = baseInfo.getTimestamp("publishDate");
-        Timestamp dateTime = new Timestamp(new Date().getTime());
+        Timestamp upTime = baseInfo.getTimestamp("upTime");
+        Timestamp downTime = baseInfo.getTimestamp("downTime");
 
         BookInfoBean bookInfo = new BookInfoBean();
+        bookInfo.setId(id);
         bookInfo.setIsbn(isbn);
         bookInfo.setBookName(bookName);
         bookInfo.setAuthor(author);
@@ -95,8 +98,8 @@ public class BookInfoServiceImpl implements BookInfoService {
         bookInfo.setUnitPrice(unitPrice);
         bookInfo.setPublishNum(publishNum);
         bookInfo.setPublishDate(publishDate);
-        bookInfo.setUpTime(dateTime);
-        bookInfo.setDownTime(dateTime);
+        bookInfo.setUpTime(upTime);
+        bookInfo.setDownTime(downTime);
         bookInfo.setStatus("available");
 
         try{
@@ -127,9 +130,9 @@ public class BookInfoServiceImpl implements BookInfoService {
 
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
-        String isbn = baseInfo.getString("isbn");
+        int id = baseInfo.getIntValue("id");
 
-        map.put("isbn",isbn);
+        map.put("id",id);
         map.put("status","deleted");
 
         try{

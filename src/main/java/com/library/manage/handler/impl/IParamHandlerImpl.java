@@ -143,4 +143,26 @@ public class IParamHandlerImpl implements IParamHandler {
         return page;
 
     }
+
+    @Override
+    public PageInfo queryBookTypeByName(Map<String, Object> map) {
+
+        Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
+        Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
+
+        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+
+            List<BookTypeBean> list = bookTypeDao.queryBookTypeByName(map);
+            PageInfo<BookTypeBean> page = new PageInfo<>(list);
+            page.setList(list);
+            return page;
+
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<BookTypeBean> list = bookTypeDao.queryBookTypeByName(map);
+        PageInfo<BookTypeBean> page = new PageInfo<>(list);
+        page.setList(list);
+        return page;
+    }
 }

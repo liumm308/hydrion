@@ -9,8 +9,10 @@ import java.sql.Timestamp;
  * */
 public class BookInfoBean {
 
+    private Integer id;
     private String isbn;
     private Integer typeId;
+    private String bookTypeDiscipline;
     private Integer publishNum;
     private Double unitPrice;
     private String bookName;
@@ -20,6 +22,14 @@ public class BookInfoBean {
     private Timestamp publishDate;
     private Timestamp upTime;
     private Timestamp downTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getIsbn() {
         return isbn;
@@ -35,6 +45,15 @@ public class BookInfoBean {
 
     public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+
+    public String getBookTypeDiscipline() {
+        return bookTypeDiscipline;
+    }
+
+    public void setBookTypeDiscipline(String bookTypeDiscipline) {
+        this.bookTypeDiscipline = bookTypeDiscipline;
     }
 
     public Integer getPublishNum() {

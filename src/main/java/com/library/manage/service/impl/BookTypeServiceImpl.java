@@ -64,6 +64,36 @@ public class BookTypeServiceImpl implements BookTypeService {
     }
 
     @Override
+    public ResultInfo queryBookTypeByName(String jsonStr) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        Map<String, Object> map = new HashMap<>();
+
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        Integer id = baseInfo.getIntValue("id");
+        Integer pageSize = baseInfo.getIntValue("pageSize");
+        Integer pageNum = baseInfo.getIntValue("pageNum");
+
+        map.put("id",id);
+        map.put("pageNum",pageNum);
+        map.put("pageSize",pageSize);
+
+        PageInfo page = paramHandler.queryBookTypeByName(map);
+        List<BookTypeBean> list = page.getList();
+
+        JSONObject jObject = new JSONObject();
+        jObject.put("total", page.getTotal());
+        jObject.put("pageSize", page.getPageSize());
+        jObject.put("pageNum", page.getPageNum());
+        jObject.put("list", list);
+
+        resultInfo.setCode(Constants.SUCCESS);
+        resultInfo.setRetObj(jObject);
+        return resultInfo;
+    }
+
+    @Override
     public ResultInfo createBookType(String jsonStr) {
 
         ResultInfo resultInfo = new ResultInfo();
@@ -71,6 +101,7 @@ public class BookTypeServiceImpl implements BookTypeService {
         JSONObject jsonObject = JSONObject.parseObject(jsonStr);
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
+        Integer bookTypeId = baseInfo.getIntValue("bookTypeId");
         String bookTypeName = baseInfo.getString("bookTypeName");
         String bookTypeDiscipline = baseInfo.getString("bookTypeDiscipline");
         String bookTypeLocation = baseInfo.getString("bookTypeLocation");
@@ -78,6 +109,7 @@ public class BookTypeServiceImpl implements BookTypeService {
 
         BookTypeBean bookType = new BookTypeBean();
         bookType.setId(id);
+        bookType.setBookTypeId(bookTypeId);
         bookType.setBookTypeName(bookTypeName);
         bookType.setBookTypeDiscipline(bookTypeDiscipline);
         bookType.setBookTypeLocation(bookTypeLocation);

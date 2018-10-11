@@ -6,6 +6,8 @@ public interface BookTypeService {
 
     ResultInfo queryBookType(String jsonStr);
 
+    ResultInfo queryBookTypeByName(String jsonStr);
+
     ResultInfo createBookType(String jsonStr);
 
     ResultInfo updateBookType(String jsonStr);

@@ -5,6 +5,7 @@
     <select id="queryBookType" parameterType="java.util.Map" resultType="com.library.manage.bean.BookTypeBean">
         select
         bt.ID as id,
+        bt.BOOK_TYPE_ID as bookTypeId,
         bt.BOOK_TYPE_NAME as bookTypeName,
         bt.BOOK_TYPE_DISCIPLINE as bookTypeDiscipline,
         bt.BOOK_TYPE_LOCATION as bookTypeLocation,
@@ -21,11 +22,25 @@
         order by bt.UPDATE_TIME desc
     </select>
 
+
+    <select id="queryBookTypeByName" parameterType="java.util.Map" resultType="com.library.manage.bean.BookTypeBean">
+        SELECT DISTINCT
+        bt.BOOK_TYPE_ID as bookTypeId,
+        bt.BOOK_TYPE_NAME as bookTypeName
+        from booktype bt
+        where bt.STATUS != 'deleted'
+        order by bt.BOOK_TYPE_ID
+    </select>
+
+
     <insert id="createBookType" parameterType="com.library.manage.bean.BookTypeBean">
         insert into booktype (
         <trim suffixOverrides=",">
             <if test="id !=null">
                 ID,
+            </if>
+            <if test="bookTypeId !=null and bookTypeId !=''">
+                BOOK_TYPE_ID,
             </if>
             <if test="bookTypeName !=null and bookTypeName !=''">
                 BOOK_TYPE_NAME,
@@ -50,6 +65,9 @@
         <trim suffixOverrides=",">
             <if test="id != null">
                 #{id,jdbcType=BIGINT},
+            </if>
+            <if test="bookTypeId !=null and bookTypeId !=''">
+                #{bookTypeId,jdbcType=BIGINT},
             </if>
             <if test="bookTypeName !=null and bookTypeName !=''">
                 #{bookTypeName,jdbcType=VARCHAR},

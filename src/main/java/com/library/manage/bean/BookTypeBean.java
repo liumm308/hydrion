@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class BookTypeBean {
 
     private Integer id;
+    private Integer bookTypeId;
     private String bookTypeName;
     private String bookTypeDiscipline;
     private String bookTypeLocation;
@@ -14,6 +15,14 @@ public class BookTypeBean {
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getBookTypeId() {
+        return bookTypeId;
+    }
+
+    public void setBookTypeId(Integer bookTypeId) {
+        this.bookTypeId = bookTypeId;
     }
 
     public void setId(Integer id) {

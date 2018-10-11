@@ -4,23 +4,29 @@
 
     <select id="queryBook" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
         select
+        bi.ID as id,
         bi.ISBN as isbn,
         bi.TYPE_ID as typeId,
+        bt.BOOK_TYPE_DISCIPLINE as bookTypeDiscipline,
         bi.BOOK_NAME as bookName,
         bi.AUTHOR as author,
         bi.PUBLISH as publish,
         bi.PUBLISH_DATE as publishDate,
         bi.PUBLISH_NUM as publishNum,
-        bi.UNIT_PRICE as unitPrice
+        bi.UNIT_PRICE as unitPrice,
         bi.UP_TIME as upTime,
         bi.DOWN_TIME as downTime
         from bookinfo bi
+        join booktype bt on bi.TYPE_ID = bt.BOOK_TYPE_ID
         where bi.STATUS != 'deleted'
         <if test="isbn != null">
             and bi.ISBN = #{isbn,jdbcType=VARCHAR}
         </if>
         <if test="bookName != null and bookName !=''">
             and bi.BOOK_NAME = #{bookName,jdbcType=VARCHAR}
+        </if>
+        <if test="typeId != null and typeId !=''">
+            and bi.TYPE_ID = #{typeId,jdbcType=BIGINT}
         </if>
         <if test="author != null and author !=''">
             and bi.AUTHOR = #{author,jdbcType=VARCHAR}
@@ -38,6 +44,9 @@
     <insert id="insertBook" parameterType="com.library.manage.bean.BookInfoBean">
         insert into bookinfo (
         <trim suffixOverrides=",">
+            <if test="id !=null">
+                ID,
+            </if>
             <if test="isbn !=null and isbn !=''">
                 ISBN,
             </if>
@@ -53,7 +62,7 @@
             <if test="publish !=null and publish !=''">
                 PUBLISH,
             </if>
-            <if test="publishDate !=null and publishDate !=''">
+            <if test="publishDate !=null">
                 PUBLISH_DATE,
             </if>
             <if test="publishNum !=null and publishNum !=''">
@@ -74,8 +83,11 @@
         </trim>
         ) values(
         <trim suffixOverrides=",">
+            <if test="id !=null">
+                #{id,jdbcType=BIGINT},
+            </if>
             <if test="isbn !=null">
-                #{isbn,jdbcType=BIGINT},
+                #{isbn,jdbcType=VARCHAR},
             </if>
             <if test="typeId !=null">
                 #{typeId,jdbcType=VARCHAR},
@@ -89,14 +101,14 @@
             <if test="publish !=null and publish !=''">
                 #{publish,jdbcType=VARCHAR},
             </if>
-            <if test="publishDate !=null and publishDate !=''">
-                #{readerPhone,jdbcType=VARCHAR},
+            <if test="publishDate !=null">
+                #{publishDate,jdbcType=TIMESTAMP},
             </if>
             <if test="publishNum !=null and publishNum !=''">
                 #{publishNum,jdbcType=VARCHAR},
             </if>
             <if test="unitPrice !=null and unitPrice !=''">
-                #{publishNum,jdbcType=VARCHAR},
+                #{unitPrice,jdbcType=VARCHAR},
             </if>
             <if test="status !=null and status !=''">
                 #{status,jdbcType=VARCHAR},
@@ -116,6 +128,6 @@
         <set >
             STATUS = #{status},
         </set>
-        where ISBN = #{isbn,jdbcType=BIGINT}
+        where ID = #{id,jdbcType=BIGINT}
     </update>
 </mapper>
