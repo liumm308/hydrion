@@ -7,6 +7,7 @@ public class BookTypeBean {
     private Integer id;
     private Integer bookTypeId;
     private String bookTypeName;
+    private String bookTypeDisciplineId;
     private String bookTypeDiscipline;
     private String bookTypeLocation;
     private String status;
@@ -35,6 +36,14 @@ public class BookTypeBean {
 
     public void setBookTypeName(String bookTypeName) {
         this.bookTypeName = bookTypeName;
+    }
+
+    public String getBookTypeDisciplineId() {
+        return bookTypeDisciplineId;
+    }
+
+    public void setBookTypeDisciplineId(String bookTypeDisciplineId) {
+        this.bookTypeDisciplineId = bookTypeDisciplineId;
     }
 
     public String getBookTypeDiscipline() {

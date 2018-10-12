@@ -17,4 +17,6 @@ public interface IParamHandler {
     PageInfo queryBookType(Map<String, Object> map);
 
     PageInfo queryBookTypeByName(Map<String, Object> map);
+
+    PageInfo queryBookNumByType(Map<String, Object> map);
 }

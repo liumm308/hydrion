@@ -11,6 +11,8 @@ public interface BookInfoService {
 
     ResultInfo queryBook(String jsonStr);
 
+    ResultInfo queryBookNumByType(String jsonStr);
+
     ResultInfo insertBook(String jsonStr);
 
     ResultInfo deleteBook(String jsonStr);

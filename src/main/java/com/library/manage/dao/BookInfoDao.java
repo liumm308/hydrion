@@ -15,6 +15,8 @@ public interface BookInfoDao {
 
     List<BookInfoBean> queryBook(Map map);
 
+    List<BookInfoBean> queryBookNumByType(Map map);
+
     int insertBook(BookInfoBean bookInfo);
 
     int deleteBook(Map map);

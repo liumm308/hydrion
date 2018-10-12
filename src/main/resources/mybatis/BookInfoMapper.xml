@@ -7,6 +7,7 @@
         bi.ID as id,
         bi.ISBN as isbn,
         bi.TYPE_ID as typeId,
+        bt.BOOK_TYPE_NAME as bookTypeName,
         bt.BOOK_TYPE_DISCIPLINE as bookTypeDiscipline,
         bi.BOOK_NAME as bookName,
         bi.AUTHOR as author,
@@ -17,7 +18,7 @@
         bi.UP_TIME as upTime,
         bi.DOWN_TIME as downTime
         from bookinfo bi
-        join booktype bt on bi.TYPE_ID = bt.BOOK_TYPE_ID
+        join booktype bt on bi.TYPE_ID = bt.BOOK_TYPE_ID and bi.TYPE_DISCIPLINE_ID = bt.BOOK_TYPE_DISCIPLINE_ID
         where bi.STATUS != 'deleted'
         <if test="isbn != null">
             and bi.ISBN = #{isbn,jdbcType=VARCHAR}
@@ -41,6 +42,33 @@
         order by bi.UP_TIME desc
     </select>
 
+
+    <select id="queryBookNumByType" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
+       SELECT
+             binfo.typeId,
+             binfo.times  as numTypeOfBooks,
+             btype.typeName as bookTypeName
+       FROM
+            ( SELECT
+                  bi.type_id AS typeId,
+                  COUNT( type_id ) AS times
+                  FROM bookinfo bi
+                  GROUP BY type_id
+                  ) AS binfo,
+            ( SELECT
+                  bt.book_type_name AS typeName,
+                  bt.book_type_id AS bookTypeId
+                  FROM booktype bt
+                  GROUP BY book_type_name
+                  ) AS btype
+       WHERE
+            binfo.typeId = btype.bookTypeId
+       GROUP BY
+            binfo.typeId,
+            btype.typeName
+    </select>
+
+
     <insert id="insertBook" parameterType="com.library.manage.bean.BookInfoBean">
         insert into bookinfo (
         <trim suffixOverrides=",">
@@ -52,6 +80,9 @@
             </if>
             <if test="typeId !=null and typeId !=''">
                 TYPE_ID,
+            </if>
+            <if test="bookTypeDisciplineId !=null and bookTypeDisciplineId !=''">
+                TYPE_DISCIPLINE_ID,
             </if>
             <if test="bookName !=null and bookName !=''">
                 BOOK_NAME,
@@ -91,6 +122,9 @@
             </if>
             <if test="typeId !=null">
                 #{typeId,jdbcType=VARCHAR},
+            </if>
+            <if test="bookTypeDisciplineId !=null">
+                #{bookTypeDisciplineId,jdbcType=VARCHAR},
             </if>
             <if test="bookName !=null and bookName !=''">
                 #{bookName,jdbcType=BIGINT},

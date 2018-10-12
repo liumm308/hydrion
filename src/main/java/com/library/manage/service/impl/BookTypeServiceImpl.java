@@ -43,9 +43,11 @@ public class BookTypeServiceImpl implements BookTypeService {
         Integer pageSize = baseInfo.getIntValue("pageSize");
         Integer pageNum = baseInfo.getIntValue("pageNum");
         String bookTypeName = baseInfo.getString("bookTypeName");
+        Integer bookTypeId = baseInfo.getIntValue("bookTypeId");
 
         map.put("id",id);
         map.put("bookTypeName",bookTypeName);
+        map.put("bookTypeId",bookTypeId);
         map.put("pageNum",pageNum);
         map.put("pageSize",pageSize);
 
@@ -103,6 +105,7 @@ public class BookTypeServiceImpl implements BookTypeService {
         Integer id = baseInfo.getIntValue("id");
         Integer bookTypeId = baseInfo.getIntValue("bookTypeId");
         String bookTypeName = baseInfo.getString("bookTypeName");
+        String bookTypeDisciplineId = baseInfo.getString("bookTypeDisciplineId");
         String bookTypeDiscipline = baseInfo.getString("bookTypeDiscipline");
         String bookTypeLocation = baseInfo.getString("bookTypeLocation");
         Timestamp dateTime = new Timestamp( new Date().getTime());
@@ -111,6 +114,7 @@ public class BookTypeServiceImpl implements BookTypeService {
         bookType.setId(id);
         bookType.setBookTypeId(bookTypeId);
         bookType.setBookTypeName(bookTypeName);
+        bookType.setBookTypeDisciplineId(bookTypeDisciplineId);
         bookType.setBookTypeDiscipline(bookTypeDiscipline);
         bookType.setBookTypeLocation(bookTypeLocation);
         bookType.setCreateTime(dateTime);

@@ -70,6 +70,34 @@ public class BookInfoServiceImpl implements BookInfoService {
     }
 
     @Override
+    public ResultInfo queryBookNumByType(String jsonStr) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        Map<String, Object> map = new HashMap<>();
+
+        JSONObject jsonObject = JSONObject.parseObject(jsonStr);
+        JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
+        int pageSize = baseInfo.getIntValue("pageSize");
+        int pageNum = baseInfo.getIntValue("pageNum");
+
+        map.put("pageSize",pageSize);
+        map.put("pageNum",pageNum);
+
+        PageInfo page = paramHandler.queryBookNumByType(map);
+        List<BookInfoBean> list = page.getList();
+
+        JSONObject jObject = new JSONObject();
+        jObject.put("total", page.getTotal());
+        jObject.put("pageSize", page.getPageSize());
+        jObject.put("pageNum", page.getPageNum());
+        jObject.put("list", list);
+
+        resultInfo.setCode(Constants.SUCCESS);
+        resultInfo.setRetObj(jObject);
+        return resultInfo;
+    }
+
+    @Override
     public ResultInfo insertBook(String jsonStr) {
 
         ResultInfo resultInfo = new ResultInfo();
@@ -80,6 +108,7 @@ public class BookInfoServiceImpl implements BookInfoService {
         String isbn = baseInfo.getString("isbn");
         int typeId = baseInfo.getIntValue("typeId");
         int publishNum = baseInfo.getIntValue("publishNum");
+        String bookTypeDisciplineId = baseInfo.getString("bookTypeDisciplineId");
         Double unitPrice = baseInfo.getDouble("unitPrice");
         String bookName = baseInfo.getString("bookName");
         String author = baseInfo.getString("author");
@@ -95,6 +124,7 @@ public class BookInfoServiceImpl implements BookInfoService {
         bookInfo.setAuthor(author);
         bookInfo.setPublish(publish);
         bookInfo.setTypeId(typeId);
+        bookInfo.setBookTypeDisciplineId(bookTypeDisciplineId);
         bookInfo.setUnitPrice(unitPrice);
         bookInfo.setPublishNum(publishNum);
         bookInfo.setPublishDate(publishDate);

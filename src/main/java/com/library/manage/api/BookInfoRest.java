@@ -48,6 +48,32 @@ public class BookInfoRest {
 
 
     /**
+     * BookInfoForTypeNums查询接口
+     *
+     * @param jsonStr []
+     */
+    @RequestMapping(value = "/queryBookNumByType", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public ResultInfo queryBookNumByType(@RequestBody String jsonStr) {
+
+        ResultInfo resultInfo = new ResultInfo();
+        try {
+
+            logger.info("BookInfoForTypeNums 查询 request: " + JsonPluginsUtil.beanToJson(jsonStr));
+
+            resultInfo = bookInfoService.queryBookNumByType(jsonStr);
+        } catch (Exception e) {
+            logger.error("BookInfoForTypeNums 查询失败: ", e);
+            resultInfo.setCode(-1);
+        }
+
+        logger.info("BookInfoForTypeNums 查询 response: " + JsonPluginsUtil.beanToJson(resultInfo));
+
+        return resultInfo;
+
+    }
+
+
+    /**
      * insertBook接口
      *
      * @param jsonStr [id,readerName,readerType,readerAge,readerSex,...]

@@ -7,12 +7,16 @@
         bt.ID as id,
         bt.BOOK_TYPE_ID as bookTypeId,
         bt.BOOK_TYPE_NAME as bookTypeName,
+        bt.BOOK_TYPE_DISCIPLINE_ID as bookTypeDisciplineId,
         bt.BOOK_TYPE_DISCIPLINE as bookTypeDiscipline,
         bt.BOOK_TYPE_LOCATION as bookTypeLocation,
         bt.CREATE_TIME as createTime,
         bt.UPDATE_TIME as updateTime
         from booktype bt
         where bt.STATUS != 'deleted'
+        <if test="bookTypeId != null and bookTypeId !=''">
+            and bt.BOOK_TYPE_ID = #{bookTypeId,jdbcType=VARCHAR}
+        </if>
         <if test="bookTypeName != null and bookTypeName !=''">
             and bt.BOOK_TYPE_NAME = #{bookTypeName,jdbcType=VARCHAR}
         </if>
@@ -45,6 +49,9 @@
             <if test="bookTypeName !=null and bookTypeName !=''">
                 BOOK_TYPE_NAME,
             </if>
+            <if test="bookTypeDisciplineId !=null and bookTypeDisciplineId !=''">
+                BOOK_TYPE_DISCIPLINE_ID,
+            </if>
             <if test="bookTypeDiscipline !=null and bookTypeDiscipline !=''">
                 BOOK_TYPE_DISCIPLINE,
             </if>
@@ -71,6 +78,9 @@
             </if>
             <if test="bookTypeName !=null and bookTypeName !=''">
                 #{bookTypeName,jdbcType=VARCHAR},
+            </if>
+            <if test="bookTypeDisciplineId !=null and bookTypeDisciplineId !=''">
+                #{bookTypeDisciplineId,jdbcType=VARCHAR},
             </if>
             <if test="bookTypeDiscipline !=null and bookTypeDiscipline !=''">
                 #{bookTypeDiscipline,jdbcType=VARCHAR},
