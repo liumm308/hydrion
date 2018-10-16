@@ -10,6 +10,7 @@ import com.library.manage.common.ResultInfo;
 import com.library.manage.dao.UserInfoDao;
 import com.library.manage.handler.IParamHandler;
 import com.library.manage.service.UserInfoService;
+import com.library.manage.utils.RandomUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
     private UserInfoDao userInfoDao;
 
+    @Autowired
+    private RandomUtils randomUtils;
+
     @Override
     public ResultInfo queryUser(String jsonStr) {
 
@@ -43,10 +47,12 @@ public class UserInfoServiceImpl implements UserInfoService {
         int pageSize = baseInfo.getIntValue("pageSize");
         int pageNum = baseInfo.getIntValue("pageNum");
         int id = baseInfo.getIntValue("id");
+        String userId = baseInfo.getString("userId");
         String userName = baseInfo.getString("userName");
         String userPassword = baseInfo.getString("userPassword");
 
         map.put("id", id);
+        map.put("userId",userId);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
         map.put("userName", userName);
@@ -78,11 +84,12 @@ public class UserInfoServiceImpl implements UserInfoService {
         String userPassword = baseInfo.getString("userPassword");
         String userCompany = baseInfo.getString("userCompany");
         String type = baseInfo.getString("type");
+        String userId = randomUtils.toFixedLengthStringByUUID(32);
         Timestamp dateTime = new Timestamp(new Date().getTime());
-
 
         UserInfoBean userInfo = new UserInfoBean();
         userInfo.setId(id);
+        userInfo.setUserId(userId);
         userInfo.setUserName(userName);
         userInfo.setUserPassword(userPassword);
         userInfo.setUserCompany(userCompany);

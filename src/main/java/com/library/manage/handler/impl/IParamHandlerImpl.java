@@ -29,6 +29,9 @@ public class IParamHandlerImpl implements IParamHandler {
     @Autowired
     BookTypeDao bookTypeDao;
 
+    @Autowired
+    RoleInfoDao roleInfoDao;
+
     /**
      * 查询用户
      */
@@ -184,6 +187,28 @@ public class IParamHandlerImpl implements IParamHandler {
         PageHelper.startPage(pageNum, pageSize);
         List<BookInfoBean> list = bookInfoDao.queryBookNumByType(map);
         PageInfo<BookInfoBean> page = new PageInfo<>(list);
+        page.setList(list);
+        return page;
+    }
+
+    @Override
+    public PageInfo queryRole(Map<String, Object> map) {
+
+        Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
+        Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
+
+        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+
+            List<RoleInfoBean> list = roleInfoDao.queryRole(map);
+            PageInfo<RoleInfoBean> page = new PageInfo<>(list);
+            page.setList(list);
+            return page;
+
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<RoleInfoBean> list = roleInfoDao.queryRole(map);
+        PageInfo<RoleInfoBean> page = new PageInfo<>(list);
         page.setList(list);
         return page;
     }

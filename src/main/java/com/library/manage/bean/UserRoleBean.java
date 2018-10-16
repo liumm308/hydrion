@@ -4,18 +4,18 @@ import java.sql.Timestamp;
 
 public class UserRoleBean {
 
-    private int id;
+    private Integer id;
     private String uid;
     private String rid;
     private String status;
     private Timestamp createTime;
     private Timestamp updateTime;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

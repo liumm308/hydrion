@@ -5,6 +5,7 @@
     <select id="queryUser" parameterType="java.util.Map" resultType="com.library.manage.bean.UserInfoBean">
         select
         ui.ID as id,
+        ui.USER_ID as userId,
         ui.USER_NAME as userName,
         ui.USER_PASSWORD as userPassword,
         ui.USER_COMPANY as userCompany,
@@ -40,6 +41,9 @@
             <if test="id !=null">
                 ID,
             </if>
+            <if test="userId !=null">
+                USER_ID,
+            </if>
             <if test="userName !=null">
                 USER_NAME,
             </if>
@@ -66,6 +70,9 @@
         <trim suffixOverrides=",">
             <if test="id !=null">
                 #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userId !=null">
+                #{userId,jdbcType=VARCHAR},
             </if>
             <if test="userName !=null">
                 #{userName,jdbcType=VARCHAR},
