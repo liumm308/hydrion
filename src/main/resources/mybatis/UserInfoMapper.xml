@@ -35,6 +35,37 @@
         order by ui.UPDATE_TIME desc
     </select>
 
+    <select id="queryUserByUserName" parameterType="java.util.Map" resultType="com.library.manage.bean.UserInfoBean">
+        select
+        ui.ID as id,
+        ui.USER_ID as userId,
+        ui.USER_NAME as username,
+        ui.USER_PASSWORD as userPassword,
+        ui.CREATE_TIME as createTime,
+        ui.UPDATE_TIME as updateTime
+        from userinfo ui
+        where ui.STATUS != 'deleted' and username = #{username,jdbcType=VARCHAR}
+        <if test="id != null and id!='' ">
+            and ui.ID = #{id,jdbcType=BIGINT}
+        </if>
+        <if test="username != null and username !=''">
+            and ui.USER_NAME = #{username,jdbcType=VARCHAR}
+        </if>
+        <if test="userPassword != null and userPassword !=''">
+            and ui.USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+        </if>
+        <if test="type != null and type !=''">
+            and ui.TYPE = #{type,jdbcType=VARCHAR}
+        </if>
+        <if test="createTime != null">
+            and ui.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+        </if>
+        <if test="updateTime != null">
+            and ui.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+        </if>
+        order by ui.UPDATE_TIME desc
+    </select>
+
     <insert id="createUser" parameterType="com.library.manage.bean.UserInfoBean">
         insert into userinfo (
         <trim suffixOverrides=",">

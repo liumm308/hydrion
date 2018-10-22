@@ -1,6 +1,9 @@
 package com.library.manage.service;
 
+import com.library.manage.bean.UserInfoBean;
 import com.library.manage.common.ResultInfo;
+
+import java.util.List;
 
 public interface UserInfoService {
     ResultInfo queryUser(String jsonStr);
@@ -11,5 +14,6 @@ public interface UserInfoService {
 
     ResultInfo modifyUser(String jsonStr);
 
+    UserInfoBean queryUserByUserName(String username);
 
 }

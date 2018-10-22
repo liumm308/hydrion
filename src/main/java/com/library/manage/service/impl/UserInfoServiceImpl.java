@@ -175,4 +175,25 @@ public class UserInfoServiceImpl implements UserInfoService {
         resultInfo.setInfo("修改用户成功");
         return resultInfo;
     }
+
+    @Override
+    public UserInfoBean queryUserByUserName(String username) {
+
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("username", username);
+
+        try{
+
+            return userInfoDao.queryUserByUserName(map);
+
+
+        }catch(Exception e){
+
+            logger.error("通过"+"username"+" 查询用户失败", e);
+            return  null;
+
+        }
+
+    }
 }

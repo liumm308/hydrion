@@ -12,6 +12,8 @@ public interface UserInfoDao {
 
     List<UserInfoBean> queryUser(Map map);
 
+    UserInfoBean queryUserByUserName(Map map);
+
     int createUser(UserInfoBean user);
 
     int removeUser(Map map);
