@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class AuthController {
         return "login";
     }
 
-    @RequestMapping("/login/captcha")
+    @RequestMapping(value = "/login",method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public void captcha()throws ServletException, IOException {
         // Set to expire far in the past.
         httpServletResponse.setDateHeader("Expires", 0);

@@ -11,6 +11,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class BrowserSecurityController {
      * @param response
      * @return
      */
-    @RequestMapping("/authentication/require")
+    @RequestMapping(value = "/user", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public BaseResponse requireAuthenication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request, response);
@@ -42,7 +43,7 @@ public class BrowserSecurityController {
             String targetUrl = savedRequest.getRedirectUrl();
             logger.info("引发跳转的请求是:" + targetUrl);
             if (StringUtils.endsWithIgnoreCase(targetUrl, ".html")) {
-                redirectStrategy.sendRedirect(request, response, "/login1.html");
+                redirectStrategy.sendRedirect(request, response, "/login.html");
             }
         }
 
