@@ -21,20 +21,20 @@
         join booktype bt on bi.TYPE_ID = bt.BOOK_TYPE_ID and bi.TYPE_DISCIPLINE_ID = bt.BOOK_TYPE_DISCIPLINE_ID
         where bi.STATUS != 'deleted'
         <if test="isbn != null">
-            and bi.ISBN = #{isbn,jdbcType=VARCHAR}
+            and bi.ISBN = concat(concat('%',#{isbn,jdbcType=VARCHAR}),'%')
         </if>
         <if test="bookName != null and bookName !=''">
-            and bi.BOOK_NAME = #{bookName,jdbcType=VARCHAR}
+            and bi.BOOK_NAME LIKE concat(concat('%',#{bookName,jdbcType=VARCHAR}),'%')
         </if>
         <if test="typeId != null and typeId !=''">
             and bi.TYPE_ID = #{typeId,jdbcType=BIGINT}
         </if>
         <if test="author != null and author !=''">
-            and bi.AUTHOR = #{author,jdbcType=VARCHAR}
+            and bi.AUTHOR LIKE concat(concat('%',#{author,jdbcType=VARCHAR}),'%')
         </if>
 
         <if test="publish != null and publish !=''">
-            and bi.READER_AGE = #{publish,jdbcType=BIGINT}
+            and bi.READER_AGE LIKE concat(concat('%',#{publish,jdbcType=BIGINT}),'%')
         </if>
         <if test="upTime != null">
             and bi.UP_TIME = #{upTime,jdbcType=TIMESTAMP}

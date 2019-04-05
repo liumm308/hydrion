@@ -17,13 +17,13 @@
         join readertype rt on ri.READER_TYPE = rt.ID
         where ri.STATUS != 'deleted'
         <if test="id != null and id!=''">
-            and ri.ID = #{id,jdbcType=BIGINT}
+            and ri.ID LIKE concat(concat('%',#{id,jdbcType=BIGINT}),'%')
         </if>
         <if test="readerName != null and readerName !=''">
-            and ri.READER_NAME = #{readerName,jdbcType=VARCHAR}
+            and ri.READER_NAME LIKE concat(concat('%',#{readerName,jdbcType=VARCHAR}),'%')
         </if>
         <if test="readerType != null and readerType !=''">
-            and ri.READER_TYPE = #{readerType,jdbcType=VARCHAR}
+            and ri.READER_TYPE LIKE concat(concat('%',#{readerType,jdbcType=VARCHAR}),'%')
         </if>
 
         <if test="readerAge != null and readerAge !=''">

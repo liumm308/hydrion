@@ -16,14 +16,14 @@
             and rt.id = #{id,jdbcType=BIGINT}
         </if>
         <if test="typeName != null and typeName !=''">
-            and rt.TYPE_NAME = #{typeName,jdbcType=VARCHAR}
+            and rt.TYPE_NAME LIKE concat(concat('%',#{typeName,jdbcType=VARCHAR}),'%')
         </if>
         <if test="maxBorrowNum != null and maxBorrowNum !=''">
-            and rt.MAX_BORROW_NUM = #{maxBorrowNum,jdbcType=BIGINT}
+            and rt.MAX_BORROW_NUM LIKE concat(concat('%',#{maxBorrowNum,jdbcType=BIGINT}),'%')
         </if>
 
         <if test="maxBorrowLimit != null and maxBorrowLimit !=''">
-            and rt.MAX_BORROW_LIMIT = #{maxBorrowLimit,jdbcType=BIGINT}
+            and rt.MAX_BORROW_LIMIT LIKE concat(concat('%',#{maxBorrowLimit,jdbcType=BIGINT}),'%')
         </if>
         <if test="updateTime != null">
             and rt.UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}

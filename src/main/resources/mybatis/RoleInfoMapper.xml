@@ -12,13 +12,13 @@
         from roleinfo rin
         where rin.STATUS != 'deleted'
         <if test="id != null and id!='' ">
-            and rin.ID = #{id,jdbcType=BIGINT}
+            and rin.ID LIKE concat(concat('%',#{id,jdbcType=BIGINT}),'%')
         </if>
         <if test="roleId != null and roleId !=''">
-            and rin.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+            and rin.ROLE_ID LIKE concat(concat('%',#{roleId,jdbcType=VARCHAR}),'%')
         </if>
         <if test="roleName != null and roleName !=''">
-            and rin.ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+            and rin.ROLE_NAME LIKE concat(concat('%',#{roleName,jdbcType=VARCHAR}),'%')
         </if>
         <if test="createTime != null">
             and rin.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}

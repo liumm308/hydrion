@@ -18,7 +18,7 @@
             and ui.ID = #{id,jdbcType=BIGINT}
         </if>
         <if test="userName != null and userName !=''">
-            and ui.USER_NAME = #{userName,jdbcType=VARCHAR}
+            and ui.USER_NAME LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
         </if>
         <if test="userPassword != null and userPassword !=''">
             and ui.USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
@@ -46,16 +46,16 @@
         from userinfo ui
         where ui.STATUS != 'deleted' and username = #{username,jdbcType=VARCHAR}
         <if test="id != null and id!='' ">
-            and ui.ID = #{id,jdbcType=BIGINT}
+            and ui.ID LIKE concat(concat('%',#{id,jdbcType=BIGINT}),'%')
         </if>
         <if test="username != null and username !=''">
-            and ui.USER_NAME = #{username,jdbcType=VARCHAR}
+            and ui.USER_NAME LIKE concat(concat('%',#{userName,jdbcType=VARCHAR}),'%')
         </if>
         <if test="userPassword != null and userPassword !=''">
-            and ui.USER_PASSWORD = #{userPassword,jdbcType=VARCHAR}
+            and ui.USER_PASSWORD LIKE concat(concat('%',#{userPassword,jdbcType=VARCHAR}),'%')
         </if>
         <if test="type != null and type !=''">
-            and ui.TYPE = #{type,jdbcType=VARCHAR}
+            and ui.TYPE LIKE concat(concat('%',#{type,jdbcType=VARCHAR}),'%')
         </if>
         <if test="createTime != null">
             and ui.CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
