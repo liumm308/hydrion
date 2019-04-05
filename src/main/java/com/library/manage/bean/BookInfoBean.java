@@ -1,5 +1,6 @@
 package com.library.manage.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 
@@ -7,7 +8,7 @@ import java.sql.Timestamp;
  * Created by liumm308 in 2018/09/26
  *
  * */
-public class BookInfoBean {
+public class BookInfoBean implements Serializable {
 
     private Integer     id;
     private String      isbn;

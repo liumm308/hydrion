@@ -1,3 +1,4 @@
+/*
 package com.library.manage.cas;
 
 import com.library.manage.bean.UserInfoBean;
@@ -38,13 +39,15 @@ public class AuthUserDetailsService implements UserDetailsService {
 
     }
 
-    /**
+    */
+/**
      * 权限字符串转化
      *
      * 如 "USER,ADMIN" -> SimpleGrantedAuthority("USER") + SimpleGrantedAuthority("ADMIN")
      *
      * @param roleStr 权限字符串
-     */
+     *//*
+
     private List<SimpleGrantedAuthority> createAuthorities(String roleStr){
         String[] roles = roleStr.split(",");
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = new ArrayList<SimpleGrantedAuthority>();
@@ -54,3 +57,4 @@ public class AuthUserDetailsService implements UserDetailsService {
         return simpleGrantedAuthorities;
     }
 }
+*/

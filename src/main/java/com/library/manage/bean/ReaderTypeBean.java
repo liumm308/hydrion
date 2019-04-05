@@ -1,12 +1,13 @@
 package com.library.manage.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /*
  * Created by liumm308 in 2018/09/29
  *
  * */
-public class ReaderTypeBean {
+public class ReaderTypeBean implements Serializable {
 
     private Integer id;
     private String typeName;

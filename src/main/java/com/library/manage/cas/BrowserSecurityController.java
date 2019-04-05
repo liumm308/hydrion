@@ -1,3 +1,4 @@
+/*
 package com.library.manage.cas;
 
 import com.library.manage.common.BaseResponse;
@@ -28,12 +29,14 @@ public class BrowserSecurityController {
     // 用于重定向
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
-    /**
+    */
+/**
      * 当需要身份认证的时候，跳转过来
      * @param request
      * @param response
      * @return
-     */
+     *//*
+
     @RequestMapping(value = "/user", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public BaseResponse requireAuthenication(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -51,3 +54,4 @@ public class BrowserSecurityController {
     }
 
 }
+*/

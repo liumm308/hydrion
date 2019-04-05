@@ -1,8 +1,9 @@
 package com.library.manage.bean;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BookTypeBean {
+public class BookTypeBean implements Serializable {
 
     private Integer id;
     private Integer bookTypeId;
