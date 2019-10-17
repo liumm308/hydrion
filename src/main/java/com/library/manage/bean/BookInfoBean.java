@@ -10,22 +10,22 @@ import java.sql.Timestamp;
  * */
 public class BookInfoBean implements Serializable {
 
-    private Integer     id;
-    private String      isbn;
-    private Integer     typeId;
-    private String      bookTypeName;
-    private Integer     numTypeOfBooks;
-    private String      bookTypeDisciplineId;
-    private String      bookTypeDiscipline;
-    private Integer     publishNum;
-    private Double      unitPrice;
-    private String      bookName;
-    private String      author;
-    private String      publish;
-    private String      status;
-    private Timestamp   publishDate;
-    private Timestamp   upTime;
-    private Timestamp   downTime;
+    private Integer id;
+    private String isbn;
+    private Integer typeId;
+    private String bookTypeName;
+    private Integer numTypeOfBooks;
+    private String bookTypeDisciplineId;
+    private String bookTypeDiscipline;
+    private Integer publishNum;
+    private Double unitPrice;
+    private String bookName;
+    private String author;
+    private String publish;
+    private String status;
+    private Timestamp publishDate;
+    private Timestamp upTime;
+    private Timestamp downTime;
 
     public Integer getId() {
         return id;

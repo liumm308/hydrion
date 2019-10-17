@@ -72,7 +72,6 @@ public class ReaderInfoRest {
     }
 
 
-
     /**
      * modifyReader接口
      *

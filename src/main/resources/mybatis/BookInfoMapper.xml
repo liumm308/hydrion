@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.manage.dao.BookInfoDao" >
+<mapper namespace="com.library.manage.dao.BookInfoDao">
 
     <select id="queryBook" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
         select
@@ -44,28 +44,28 @@
 
 
     <select id="queryBookNumByType" parameterType="java.util.Map" resultType="com.library.manage.bean.BookInfoBean">
-       SELECT
-             binfo.typeId,
-             binfo.times  as numTypeOfBooks,
-             btype.typeName as bookTypeName
-       FROM
-            ( SELECT
-                  bi.type_id AS typeId,
-                  COUNT( type_id ) AS times
-                  FROM bookinfo bi
-                  GROUP BY type_id
-                  ) AS binfo,
-            ( SELECT
-                  bt.book_type_name AS typeName,
-                  bt.book_type_id AS bookTypeId
-                  FROM booktype bt
-                  GROUP BY book_type_name
-                  ) AS btype
-       WHERE
-            binfo.typeId = btype.bookTypeId
-       GROUP BY
-            binfo.typeId,
-            btype.typeName
+        SELECT
+        binfo.typeId,
+        binfo.times as numTypeOfBooks,
+        btype.typeName as bookTypeName
+        FROM
+        ( SELECT
+        bi.type_id AS typeId,
+        COUNT( type_id ) AS times
+        FROM bookinfo bi
+        GROUP BY type_id
+        ) AS binfo,
+        ( SELECT
+        bt.book_type_name AS typeName,
+        bt.book_type_id AS bookTypeId
+        FROM booktype bt
+        GROUP BY book_type_name
+        ) AS btype
+        WHERE
+        binfo.typeId = btype.bookTypeId
+        GROUP BY
+        binfo.typeId,
+        btype.typeName
     </select>
 
 
@@ -159,7 +159,7 @@
 
     <update id="deleteBook" parameterType="java.util.Map">
         update bookinfo
-        <set >
+        <set>
             STATUS = #{status},
         </set>
         where ID = #{id,jdbcType=BIGINT}

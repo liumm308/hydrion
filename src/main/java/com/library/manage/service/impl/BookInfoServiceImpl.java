@@ -46,13 +46,13 @@ public class BookInfoServiceImpl implements BookInfoService {
         String author = baseInfo.getString("author");
         String publish = baseInfo.getString("publish");
 
-        map.put("pageSize",pageSize);
-        map.put("pageNum",pageNum);
-        map.put("typeId",typeId);
-        map.put("isbn",isbn);
-        map.put("bookName",bookName);
-        map.put("author",author);
-        map.put("publish",publish);
+        map.put("pageSize", pageSize);
+        map.put("pageNum", pageNum);
+        map.put("typeId", typeId);
+        map.put("isbn", isbn);
+        map.put("bookName", bookName);
+        map.put("author", author);
+        map.put("publish", publish);
 
         PageInfo page = paramHandler.queryBook(map);
         List<BookInfoBean> list = page.getList();
@@ -80,8 +80,8 @@ public class BookInfoServiceImpl implements BookInfoService {
         int pageSize = baseInfo.getIntValue("pageSize");
         int pageNum = baseInfo.getIntValue("pageNum");
 
-        map.put("pageSize",pageSize);
-        map.put("pageNum",pageNum);
+        map.put("pageSize", pageSize);
+        map.put("pageNum", pageNum);
 
         PageInfo page = paramHandler.queryBookNumByType(map);
         List<BookInfoBean> list = page.getList();
@@ -132,11 +132,11 @@ public class BookInfoServiceImpl implements BookInfoService {
         bookInfo.setDownTime(downTime);
         bookInfo.setStatus("available");
 
-        try{
+        try {
 
             bookInfoDao.insertBook(bookInfo);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("录入书本信息失败");
@@ -162,14 +162,14 @@ public class BookInfoServiceImpl implements BookInfoService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         int id = baseInfo.getIntValue("id");
 
-        map.put("id",id);
-        map.put("status","deleted");
+        map.put("id", id);
+        map.put("status", "deleted");
 
-        try{
+        try {
 
             bookInfoDao.deleteBook(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除书本信息失败");

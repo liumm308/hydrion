@@ -51,15 +51,15 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         String bookQuotaForReader = baseInfo.getString("bookQuotaForReader");
         String bookNumForReader = baseInfo.getString("bookNumForReader");
 
-        map.put("pageSize",pageSize);
-        map.put("pageNum",pageNum);
-        map.put("id",id);
-        map.put("readerName",readerName);
-        map.put("readerType",readerType);
-        map.put("readerAge",readerAge);
-        map.put("readerSex",readerSex);
-        map.put("bookQuota",bookQuotaForReader);
-        map.put("bookNum",bookNumForReader);
+        map.put("pageSize", pageSize);
+        map.put("pageNum", pageNum);
+        map.put("id", id);
+        map.put("readerName", readerName);
+        map.put("readerType", readerType);
+        map.put("readerAge", readerAge);
+        map.put("readerSex", readerSex);
+        map.put("bookQuota", bookQuotaForReader);
+        map.put("bookNum", bookNumForReader);
 
         PageInfo page = paramHandler.queryReader(map);
         List<ReaderInfoBean> list = page.getList();
@@ -103,11 +103,11 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         readerInfo.setUpdateTime(dateTime);
         readerInfo.setStatus("available");
 
-        try{
+        try {
 
             readerInfoDao.createReader(readerInfo);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建读者失败");
             logger.error("创建读者失败: ", e);
@@ -136,18 +136,18 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         String descriptive = baseInfo.getString("descriptive");
         Timestamp dateTime = new Timestamp(new Date().getTime());
 
-        map.put("id",id);
-        map.put("readerName",readerName);
-        map.put("readerType",readerType);
-        map.put("readerPhone",readerPhone);
-        map.put("descriptive",descriptive);
-        map.put("updateTime",dateTime);
+        map.put("id", id);
+        map.put("readerName", readerName);
+        map.put("readerType", readerType);
+        map.put("readerPhone", readerPhone);
+        map.put("descriptive", descriptive);
+        map.put("updateTime", dateTime);
 
-        try{
+        try {
 
             readerInfoDao.modifyReader(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建读者失败");
             logger.error("创建读者失败: ", e);
@@ -171,14 +171,14 @@ public class ReaderInfoServiceImpl implements ReaderInfoService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         int id = baseInfo.getInteger("id");
 
-        map.put("id",id);
-        map.put("status","deleted");
+        map.put("id", id);
+        map.put("status", "deleted");
 
-        try{
+        try {
 
             readerInfoDao.deleteReader(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除读者失败");

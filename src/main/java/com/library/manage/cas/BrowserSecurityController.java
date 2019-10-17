@@ -31,11 +31,12 @@ public class BrowserSecurityController {
 
     */
 /**
-     * 当需要身份认证的时候，跳转过来
-     * @param request
-     * @param response
-     * @return
-     *//*
+ * 当需要身份认证的时候，跳转过来
+ *
+ * @param request
+ * @param response
+ * @return
+ *//*
 
     @RequestMapping(value = "/user", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)

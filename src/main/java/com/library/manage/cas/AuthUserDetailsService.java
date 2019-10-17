@@ -1,4 +1,3 @@
-/*
 package com.library.manage.cas;
 
 import com.library.manage.bean.UserInfoBean;
@@ -35,18 +34,15 @@ public class AuthUserDetailsService implements UserDetailsService {
 
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities("ADMIN,USER");
         return new User(userInfoBean.getUserName(), userInfoBean.getUserPassword(), simpleGrantedAuthorities);
-
-
     }
 
-    */
 /**
-     * 权限字符串转化
-     *
-     * 如 "USER,ADMIN" -> SimpleGrantedAuthority("USER") + SimpleGrantedAuthority("ADMIN")
-     *
-     * @param roleStr 权限字符串
-     *//*
+ * 权限字符串转化
+ * <p>
+ * 如 "USER,ADMIN" -> SimpleGrantedAuthority("USER") + SimpleGrantedAuthority("ADMIN")
+ *
+ * @param roleStr 权限字符串
+ */
 
     private List<SimpleGrantedAuthority> createAuthorities(String roleStr){
         String[] roles = roleStr.split(",");
@@ -57,4 +53,3 @@ public class AuthUserDetailsService implements UserDetailsService {
         return simpleGrantedAuthorities;
     }
 }
-*/

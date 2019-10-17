@@ -33,8 +33,9 @@ public class RedisConfig extends CachingConfigurerSupport {
     private int port;
     @Value("${spring.redis.timeout}")
     private int timeout;
+
     @Bean
-    public KeyGenerator wiselyKeyGenerator(){
+    public KeyGenerator wiselyKeyGenerator() {
         return new KeyGenerator() {
             @Override
             public Object generate(Object target, Method method, Object... params) {
@@ -48,6 +49,7 @@ public class RedisConfig extends CachingConfigurerSupport {
             }
         };
     }
+
     @Bean
     public JedisConnectionFactory redisConnectionFactory() {
         JedisConnectionFactory factory = new JedisConnectionFactory();
@@ -56,6 +58,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         factory.setTimeout(timeout); //设置连接超时时间
         return factory;
     }
+
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         RedisCacheManager cacheManager = RedisCacheManager.create(connectionFactory);
@@ -63,6 +66,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         //cacheManager.setDefaultExpiration(10); //设置key-value超时时间
         return cacheManager;
     }
+
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
@@ -70,6 +74,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.afterPropertiesSet();
         return template;
     }
+
     private void setSerializer(StringRedisTemplate template) {
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();

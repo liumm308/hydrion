@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.manage.dao.ReaderInfoDao" >
+<mapper namespace="com.library.manage.dao.ReaderInfoDao">
 
     <select id="queryReader" parameterType="java.util.Map" resultType="com.library.manage.bean.ReaderInfoBean">
         select
@@ -113,20 +113,20 @@
 
     <update id="modifyReader" parameterType="java.util.Map">
         update readerinfo
-        <set >
-            <if test="readerName != null and readerName != ''" >
+        <set>
+            <if test="readerName != null and readerName != ''">
                 READER_NAME = #{readerName,jdbcType=VARCHAR},
             </if>
-            <if test="readerType != null and readerType != ''" >
+            <if test="readerType != null and readerType != ''">
                 READER_TYPE = #{readerType,jdbcType=VARCHAR},
             </if>
-            <if test="readerPhone != null and readerPhone != ''" >
+            <if test="readerPhone != null and readerPhone != ''">
                 READER_PHONE = #{readerPhone,jdbcType=VARCHAR},
             </if>
-            <if test="descriptive != null and descriptive != ''" >
+            <if test="descriptive != null and descriptive != ''">
                 DESCRIPTIVE = #{descriptive,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null " >
+            <if test="updateTime != null ">
                 UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
@@ -135,7 +135,7 @@
 
     <update id="deleteReader" parameterType="java.util.Map">
         update readerinfo
-        <set >
+        <set>
             STATUS = #{status},
         </set>
         where id = #{id,jdbcType=BIGINT}

@@ -52,7 +52,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         String userPassword = baseInfo.getString("userPassword");
 
         map.put("id", id);
-        map.put("userId",userId);
+        map.put("userId", userId);
         map.put("pageSize", pageSize);
         map.put("pageNum", pageNum);
         map.put("userName", userName);
@@ -183,15 +183,15 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         map.put("username", username);
 
-        try{
+        try {
 
             return userInfoDao.queryUserByUserName(map);
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
-            logger.error("通过"+"username"+" 查询用户失败", e);
-            return  null;
+            logger.error("通过" + "username" + " 查询用户失败", e);
+            return null;
 
         }
 

@@ -87,11 +87,11 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         readerType.setUpdateTime(dateTime);
         readerType.setStatus("available");
 
-        try{
+        try {
 
             readerTypeDao.createReaderType(readerType);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建读者类型失败");
@@ -120,17 +120,17 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         Integer maxBorrowLimit = baseInfo.getIntValue("maxBorrowLimit");
         Timestamp dateTime = new Timestamp(new Date().getTime());
 
-        map.put("id",id);
-        map.put("typeName",typeName);
-        map.put("maxBorrowNum",maxBorrowNum);
-        map.put("maxBorrowLimit",maxBorrowLimit);
-        map.put("updateTime",dateTime);
+        map.put("id", id);
+        map.put("typeName", typeName);
+        map.put("maxBorrowNum", maxBorrowNum);
+        map.put("maxBorrowLimit", maxBorrowLimit);
+        map.put("updateTime", dateTime);
 
-        try{
+        try {
 
             readerTypeDao.updateReaderType(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("修改读者类型失败");
@@ -155,14 +155,14 @@ public class ReaderTypeServiceImpl implements ReaderTypeService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
 
-        map.put("id",id);
+        map.put("id", id);
         map.put("status", "deleted");
 
-        try{
+        try {
 
             readerTypeDao.deleteReaderType(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除读者类型失败");

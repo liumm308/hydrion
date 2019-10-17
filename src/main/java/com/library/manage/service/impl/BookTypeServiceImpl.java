@@ -45,11 +45,11 @@ public class BookTypeServiceImpl implements BookTypeService {
         String bookTypeName = baseInfo.getString("bookTypeName");
         Integer bookTypeId = baseInfo.getIntValue("bookTypeId");
 
-        map.put("id",id);
-        map.put("bookTypeName",bookTypeName);
-        map.put("bookTypeId",bookTypeId);
-        map.put("pageNum",pageNum);
-        map.put("pageSize",pageSize);
+        map.put("id", id);
+        map.put("bookTypeName", bookTypeName);
+        map.put("bookTypeId", bookTypeId);
+        map.put("pageNum", pageNum);
+        map.put("pageSize", pageSize);
 
         PageInfo page = paramHandler.queryBookType(map);
         List<BookTypeBean> list = page.getList();
@@ -77,9 +77,9 @@ public class BookTypeServiceImpl implements BookTypeService {
         Integer pageSize = baseInfo.getIntValue("pageSize");
         Integer pageNum = baseInfo.getIntValue("pageNum");
 
-        map.put("id",id);
-        map.put("pageNum",pageNum);
-        map.put("pageSize",pageSize);
+        map.put("id", id);
+        map.put("pageNum", pageNum);
+        map.put("pageSize", pageSize);
 
         PageInfo page = paramHandler.queryBookTypeByName(map);
         List<BookTypeBean> list = page.getList();
@@ -108,7 +108,7 @@ public class BookTypeServiceImpl implements BookTypeService {
         String bookTypeDisciplineId = baseInfo.getString("bookTypeDisciplineId");
         String bookTypeDiscipline = baseInfo.getString("bookTypeDiscipline");
         String bookTypeLocation = baseInfo.getString("bookTypeLocation");
-        Timestamp dateTime = new Timestamp( new Date().getTime());
+        Timestamp dateTime = new Timestamp(new Date().getTime());
 
         BookTypeBean bookType = new BookTypeBean();
         bookType.setId(id);
@@ -121,11 +121,11 @@ public class BookTypeServiceImpl implements BookTypeService {
         bookType.setUpdateTime(dateTime);
         bookType.setStatus("available");
 
-        try{
+        try {
 
             bookTypeDao.createBookType(bookType);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建书本类型失败");
@@ -152,15 +152,15 @@ public class BookTypeServiceImpl implements BookTypeService {
         String bookTypeName = baseInfo.getString("bookTypeName");
         Timestamp dateTime = new Timestamp(new Date().getTime());
 
-        map.put("id",id);
-        map.put("bookTypeName",bookTypeName);
-        map.put("updateTime",dateTime);
+        map.put("id", id);
+        map.put("bookTypeName", bookTypeName);
+        map.put("updateTime", dateTime);
 
-        try{
+        try {
 
             bookTypeDao.updateBookType(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("修改书本类型失败");
@@ -185,14 +185,14 @@ public class BookTypeServiceImpl implements BookTypeService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
 
-        map.put("id",id);
-        map.put("status","deleted");
+        map.put("id", id);
+        map.put("status", "deleted");
 
-        try{
+        try {
 
             bookTypeDao.deleteBookType(map);
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除书本类型失败");

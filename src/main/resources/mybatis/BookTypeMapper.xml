@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.manage.dao.BookTypeDao" >
+<mapper namespace="com.library.manage.dao.BookTypeDao">
 
     <select id="queryBookType" parameterType="java.util.Map" resultType="com.library.manage.bean.BookTypeBean">
         select
@@ -103,11 +103,11 @@
 
     <update id="updateBookType" parameterType="java.util.Map">
         update booktype
-        <set >
+        <set>
             <if test="bookTypeName != null and bookTypeName !=''">
                 BOOK_TYPE_NAME = #{bookTypeName,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null " >
+            <if test="updateTime != null ">
                 UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
@@ -116,7 +116,7 @@
 
     <update id="deleteBookType" parameterType="java.util.Map">
         update booktype
-        <set >
+        <set>
             STATUS = #{status},
         </set>
         where ID = #{id,jdbcType=BIGINT}

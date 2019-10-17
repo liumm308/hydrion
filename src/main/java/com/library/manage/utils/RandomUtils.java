@@ -14,6 +14,7 @@ public class RandomUtils {
 
     /**
      * 由大小写字母、数字组成的随机字符串
+     *
      * @param length
      * @return
      */
@@ -28,6 +29,7 @@ public class RandomUtils {
 
     /**
      * 由大小写字母组成的随机字符串
+     *
      * @param length
      * @return
      */
@@ -42,6 +44,7 @@ public class RandomUtils {
 
     /**
      * 由小字字母组成的随机字符串
+     *
      * @param length
      * @return
      */
@@ -51,6 +54,7 @@ public class RandomUtils {
 
     /**
      * 由大写字母组成的随机字符串
+     *
      * @param length
      * @return
      */
@@ -60,6 +64,7 @@ public class RandomUtils {
 
     /**
      * 产生指字个数的0组成的字符串
+     *
      * @param length
      * @return
      */
@@ -73,6 +78,7 @@ public class RandomUtils {
 
     /**
      * 将数字转化成指字长度的字符串
+     *
      * @param num
      * @param fixdlenth
      * @return
@@ -92,6 +98,7 @@ public class RandomUtils {
 
     /**
      * 这个方法只支持最大长度为32的随机字符串,如要支持更大长度的，可以适当修改此方法，如前面补、后面补，或者多个uuid相连接
+     *
      * @param length
      * @return
      */

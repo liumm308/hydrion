@@ -48,7 +48,7 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         map.put("pageNum", pageNum);
         map.put("id", id);
         map.put("roleId", roleId);
-        map.put("roleName",roleName);
+        map.put("roleName", roleName);
 
         PageInfo page = paramHandler.queryRole(map);
         List<RoleInfoBean> list = page.getList();
@@ -86,11 +86,11 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         roleInfo.setUpdateTime(dateTime);
         roleInfo.setStatus("available");
 
-        try{
+        try {
 
             roleInfoDao.createRole(roleInfo);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("创建权限信息失败");
@@ -115,14 +115,14 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         Integer id = baseInfo.getIntValue("id");
         String roleName = baseInfo.getString("roleName");
 
-        map.put("id",id);
-        map.put("roleName",roleName);
+        map.put("id", id);
+        map.put("roleName", roleName);
 
-        try{
+        try {
 
             roleInfoDao.modifyRole(map);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("修改权限信息失败");
@@ -148,14 +148,14 @@ public class RoleInfoServiceImpl implements RoleInfoService {
         JSONObject baseInfo = jsonObject.getJSONObject("baseInfo");
         Integer id = baseInfo.getIntValue("id");
 
-        map.put("id",id);
-        map.put("status","deleted");
+        map.put("id", id);
+        map.put("status", "deleted");
 
-        try{
+        try {
 
             roleInfoDao.deleteRole(map);
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
             resultInfo.setCode(Constants.FAIL);
             resultInfo.setInfo("删除权限信息失败");

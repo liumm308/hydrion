@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.manage.dao.ReaderTypeDao" >
+<mapper namespace="com.library.manage.dao.ReaderTypeDao">
 
     <select id="queryReaderType" parameterType="java.util.Map" resultType="com.library.manage.bean.ReaderTypeBean">
         select
@@ -85,17 +85,17 @@
 
     <update id="updateReaderType" parameterType="java.util.Map">
         update readertype
-        <set >
-            <if test="typeName != null and typeName != ''" >
+        <set>
+            <if test="typeName != null and typeName != ''">
                 TYPE_NAME = #{typeName,jdbcType=VARCHAR},
             </if>
-            <if test="maxBorrowNum != null and maxBorrowNum != ''" >
+            <if test="maxBorrowNum != null and maxBorrowNum != ''">
                 MAX_BORROW_NUM = #{maxBorrowNum,jdbcType=BIGINT},
             </if>
-            <if test="maxBorrowLimit != null and maxBorrowLimit != ''" >
+            <if test="maxBorrowLimit != null and maxBorrowLimit != ''">
                 MAX_BORROW_LIMIT = #{maxBorrowLimit,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null " >
+            <if test="updateTime != null ">
                 UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
@@ -104,7 +104,7 @@
 
     <update id="deleteReaderType" parameterType="java.util.Map">
         update readertype
-        <set >
+        <set>
             STATUS = #{status},
         </set>
         where ID = #{id,jdbcType=BIGINT}

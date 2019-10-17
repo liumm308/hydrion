@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.library.manage.dao.RoleInfoDao" >
+<mapper namespace="com.library.manage.dao.RoleInfoDao">
 
     <select id="queryRole" parameterType="java.util.Map" resultType="com.library.manage.bean.RoleInfoBean">
         select
@@ -77,11 +77,11 @@
 
     <update id="modifyRole" parameterType="java.util.Map">
         update roleinfo
-        <set >
-            <if test="roleName != null and roleName != ''" >
+        <set>
+            <if test="roleName != null and roleName != ''">
                 ROLE_NAME = #{roleName,jdbcType=VARCHAR},
             </if>
-            <if test="updateTime != null " >
+            <if test="updateTime != null ">
                 UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
@@ -90,7 +90,7 @@
 
     <update id=" deleteRole" parameterType="java.util.Map">
         update roleinfo
-        <set >
+        <set>
             STATUS = #{status},
         </set>
         where id = #{id,jdbcType=BIGINT}

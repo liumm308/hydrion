@@ -89,17 +89,17 @@ public class IParamHandlerImpl implements IParamHandler {
         Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
         Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
 
-        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)){
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
 
-            List<BookInfoBean> list =  bookInfoDao.queryBook(map);
+            List<BookInfoBean> list = bookInfoDao.queryBook(map);
             PageInfo<BookInfoBean> page = new PageInfo<BookInfoBean>(list);
             page.setList(list);
             return page;
 
         }
 
-        PageHelper.startPage(pageNum,pageSize);
-        List<BookInfoBean> list =  bookInfoDao.queryBook(map);
+        PageHelper.startPage(pageNum, pageSize);
+        List<BookInfoBean> list = bookInfoDao.queryBook(map);
         PageInfo<BookInfoBean> page = new PageInfo<BookInfoBean>(list);
         return page;
     }
@@ -130,7 +130,7 @@ public class IParamHandlerImpl implements IParamHandler {
         Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
         Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
 
-        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
 
             List<BookTypeBean> list = bookTypeDao.queryBookType(map);
             PageInfo<BookTypeBean> page = new PageInfo<>(list);
@@ -153,7 +153,7 @@ public class IParamHandlerImpl implements IParamHandler {
         Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
         Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
 
-        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
 
             List<BookTypeBean> list = bookTypeDao.queryBookTypeByName(map);
             PageInfo<BookTypeBean> page = new PageInfo<>(list);
@@ -175,7 +175,7 @@ public class IParamHandlerImpl implements IParamHandler {
         Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
         Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
 
-        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
 
             List<BookInfoBean> list = bookInfoDao.queryBookNumByType(map);
             PageInfo<BookInfoBean> page = new PageInfo<>(list);
@@ -197,7 +197,7 @@ public class IParamHandlerImpl implements IParamHandler {
         Integer pageNum = Integer.valueOf((Integer) map.get("pageNum"));
         Integer pageSize = Integer.valueOf((Integer) map.get("pageSize"));
 
-        if((null == pageNum || pageNum == 0)&&(null == pageSize || pageSize == 0)){
+        if ((null == pageNum || pageNum == 0) && (null == pageSize || pageSize == 0)) {
 
             List<RoleInfoBean> list = roleInfoDao.queryRole(map);
             PageInfo<RoleInfoBean> page = new PageInfo<>(list);

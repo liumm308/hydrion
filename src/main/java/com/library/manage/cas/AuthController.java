@@ -30,12 +30,12 @@ public class AuthController {
     private Producer captchaProducer;
 
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
 
-    @RequestMapping(value = "/login",method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
-    public void captcha()throws ServletException, IOException {
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public void captcha() throws ServletException, IOException {
         // Set to expire far in the past.
         httpServletResponse.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
