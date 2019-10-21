@@ -64,7 +64,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     }
 
     
-/*	@Bean
+	/*@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter() {
