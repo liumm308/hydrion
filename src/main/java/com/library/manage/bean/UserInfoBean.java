@@ -1,13 +1,20 @@
 package com.library.manage.bean;
 
+import org.springframework.security.core.CredentialsContainer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.io.Serializable;
+import java.security.Principal;
 import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.Set;
 
 /*
  * Created by liumm308 in 2018/09/19
  *
  * */
-public class UserInfoBean implements Serializable {
+public class UserInfoBean implements Serializable, UserDetails, CredentialsContainer, Principal {
 
     private Integer id;
     private String userId;
@@ -18,6 +25,10 @@ public class UserInfoBean implements Serializable {
     private String userCompany;
     private Timestamp createTime;
     private Timestamp updateTime;
+    private Set<GrantedAuthority> authorities;
+    private boolean accountNonExpired;
+    private boolean accountNonLocked;
+    private boolean credentialsNonExpired;
 
     public Integer getId() {
         return id;
@@ -91,4 +102,61 @@ public class UserInfoBean implements Serializable {
         this.updateTime = updateTime;
     }
 
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public void eraseCredentials() {
+        this.userPassword = null;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    public boolean isAccountNonExpired() {
+        return this.accountNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return this.accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return this.credentialsNonExpired;
+    };
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    public void setAuthorities(Set<GrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
 }

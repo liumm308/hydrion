@@ -51,9 +51,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 .withClient("CloudClientId")
                 .secret("secret")
 				.authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .scopes("user_info")
                 .autoApprove(true)
-                .accessTokenValiditySeconds(7200)
+                .redirectUris("http://www.baidu.com")
+                .scopes("all","read", "write")
                 .refreshTokenValiditySeconds(7200);
     }
 

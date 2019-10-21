@@ -26,7 +26,9 @@ public class AuthUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        UserInfoBean userInfoBean = userInfoService.queryUserByUserName(username);
+        UserInfoBean userInfoBean = null;
+
+        userInfoBean = userInfoService.queryUserByUserName(username);
 
         if (userInfoBean == null){
             throw new UsernameNotFoundException("用户不存在！");

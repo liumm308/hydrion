@@ -10,6 +10,7 @@ import com.library.manage.common.ResultInfo;
 import com.library.manage.dao.UserInfoDao;
 import com.library.manage.handler.IParamHandler;
 import com.library.manage.service.UserInfoService;
+import com.library.manage.utils.MD5Util;
 import com.library.manage.utils.RandomUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -82,6 +83,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         int id = baseInfo.getIntValue("id");
         String userName = baseInfo.getString("userName");
         String userPassword = baseInfo.getString("userPassword");
+        String md5Password = MD5Util.encode(userPassword);
         String userCompany = baseInfo.getString("userCompany");
         String type = baseInfo.getString("type");
         String userId = randomUtils.toFixedLengthStringByUUID(32);
@@ -91,7 +93,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         userInfo.setId(id);
         userInfo.setUserId(userId);
         userInfo.setUserName(userName);
-        userInfo.setUserPassword(userPassword);
+        userInfo.setUserPassword(md5Password);
         userInfo.setUserCompany(userCompany);
         userInfo.setType(type);
         userInfo.setCreateTime(dateTime);
@@ -181,7 +183,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         Map<String, Object> map = new HashMap<>();
 
-        map.put("username", username);
+        map.put("userName", username);
 
         try {
 

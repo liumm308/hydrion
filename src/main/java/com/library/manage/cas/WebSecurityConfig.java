@@ -1,6 +1,5 @@
 package com.library.manage.cas;
 
-import com.library.manage.utils.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -64,24 +62,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 */
 
 
-/**
- * 添加 UserDetailsService， 实现自定义登录校验
- */
+    /**
+    * 添加 UserDetailsService， 实现自定义登录校验
+    */
 
     @Override
     protected void configure(AuthenticationManagerBuilder builder) throws Exception {
         builder.userDetailsService(authUserDetailsService)
-            .passwordEncoder(new PasswordEncoder(){
-
-                @Override
-                public String encode(CharSequence rawPassword) {
-                    return MD5Util.encode((String)rawPassword);
-                }
-
-                @Override
-                public boolean matches(CharSequence rawPassword, String encodedPassword) {
-                    return encodedPassword.equals(MD5Util.encode((String)rawPassword));
-                }});
+                .passwordEncoder(PasswordEncoderHander.getInstance());
     }
 
     /**

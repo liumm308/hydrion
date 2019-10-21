@@ -2,9 +2,6 @@ package com.library.manage.cas;
 
 import java.security.MessageDigest;
 
-/**
- * Created by yangpj on 2018/6/28.
- */
 public class MD5Util {
 
     private static final String SALT = "cloud";
