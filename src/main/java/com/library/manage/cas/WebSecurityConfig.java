@@ -1,6 +1,7 @@
 package com.library.manage.cas;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,11 +10,18 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Value("${defaultLoginUrl}")
+    private String defaultLoginUrl;
+
     private AuthUserDetailsService authUserDetailsService;
+
+    @Autowired
+    private MyLoginHandler myLoginHandler;
 
     @Autowired
     public void setAnyUserDetailsService(AuthUserDetailsService authUserDetailsService){
@@ -35,7 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
        http.authorizeRequests().antMatchers("/exit", "/login/captcha", "/preLogin/**").permitAll();
 
-       http.formLogin()                                                                                    //  定义当需要用户登录时候，转到的登录页面。
+  /*     http.formLogin()                                                                                    //  定义当需要用户登录时候，转到的登录页面。
                .loginPage("/login.html")                                                                   // 设置登录页面
                .loginProcessingUrl("/user/login")                                                          // 自定义的登录接口
                .and()
@@ -45,6 +53,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                .authenticated()
                .and()
                .csrf().disable();                                                                          // 关闭csrf防护
+               */
+
+       http.formLogin()
+               .loginPage("/login").defaultSuccessUrl(defaultLoginUrl)
+               .successHandler(myLoginHandler)
+               .and()
+               .authorizeRequests()
+               .antMatchers("/login", "/logout", "/random", "/auth", "/oauth/authorize", "/oauth/token","/download").permitAll()
+               .anyRequest()
+               .authenticated()
+               .and()
+               .csrf().disable();
+
     }
 
     /**
