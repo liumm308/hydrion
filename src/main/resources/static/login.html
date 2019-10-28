@@ -1,22 +1,25 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html >
+<meta http-equiv=Content-Type content=text/html;charset=utf-8>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>多云登录</title>
+    <meta charset="utf-8"/>
+    <title>图书管理系统登录</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    <meta name="description"
+          content="app, web app, responsive, responsive layout, admin, admin panel, admin dashboard, flat, flat ui, ui kit, AngularJS, ui route, charts, widgets, components"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 </head>
-
 <body style="background-color: #f1f1f1; padding-bottom: 0">
 
-<div th:insert="~{header :: nav}"></div>
-
+<!-- jQuery -->
+<script th:src="@{/static/js/jquery.min.js}"></script>
+<script th:src="@{/static/js/login.js}"></script>
 <div class="container" style="margin-top: 60px">
-
     <div class="row" style="margin-top: 100px">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-console"></span> Login</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-console"></span> 登录认证</h3>
                 </div>
                 <div class="panel-body">
                     <form th:action="@{/login}" method="post">
@@ -42,7 +45,7 @@
                         </div>
                         <div class="form-group">
                             <div class="input-group col-md-6 col-md-offset-3 col-xs-12 ">
-                                <button type="submit" class="btn btn-primary btn-block">登录</button>
+                                <button type="submit" class="btn btn-primary btn-block" onclick="loginIn()">登录</button>
                             </div>
                         </div>
                     </form>
@@ -50,9 +53,6 @@
             </div>
         </div>
     </div>
-
 </div>
-
 </body>
-
 </html>
